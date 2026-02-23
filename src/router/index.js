@@ -44,15 +44,18 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from '../views/HomeView.vue';
 import Account from '../views/AccountView.vue'
 import Wishlist from '../views/WishlistView.vue'
-import Orders from "../views/OrdersView.vue";
-import Inbox from "../views/InboxView.vue";
+import Orders from '../views/OrdersView.vue';
+import Inbox from '../views/InboxView.vue';
+import AddressBook from '../views/AddressBookView.vue';
+import NewsletterPreference from "../views/NewsletterPreferenceView.vue";
 const routes = [
   { path: '/', component: Home },
   { path: '/account', component: Account },
   { path: '/wishlist', component: Wishlist },
   { path: '/orders', component: Orders },
   { path: '/inbox', component: Inbox },
-  
+  { path: '/addressBook', component: AddressBook },
+  { path: '/newsletter', component: NewsletterPreference }
 
 
 
