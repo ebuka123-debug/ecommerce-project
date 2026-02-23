@@ -165,7 +165,7 @@
 
                         <h2 class="fs-16 mt-4">You don't have any messages</h2>
                         <p class="fs-14">Here you will be able to see all the messages that we send you. Stay tuned</p>
-                        <RouterLink to="" class="btn btn-red fs-14 mt-3">
+                        <RouterLink to="/" class="btn btn-red fs-14 mt-3">
                             Continue shopping
                         </RouterLink>
                     </div>
