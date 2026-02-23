@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 
 
 </script>
@@ -17,35 +19,35 @@
 
         </div>
         <div class="offcanvas-body">
-            <a href="./index.html" class="offcanvas-content d-flex align-items-center active-nav mb-2 rounded d-flex pt-2 pb-2 ps-2">
+            <RouterLink  to="" class="offcanvas-content d-flex align-items-center active-nav mb-2 rounded d-flex pt-2 pb-2 ps-2">
                 <!-- <div class="icon-hot"></div> -->
                  <font-awesome-icon :icon="['fa','store-alt']" class="text-red fs-14"/>
                 <b class="ms-2 fs-14">Products</b>
-            </a>
-            <a href="" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
+            </RouterLink>
+            <RouterLink to="" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
                 <!-- <div class="icon-hot"></div> -->
                   <!-- <i class="fa fa-user-alt text-red fs-14"></i> -->
                    <font-awesome-icon :icon="['fa', 'user-alt']" class="text-red fs-14"/>
                 <b class="ms-2 fs-14">Profile</b>
-            </a>
-            <a href="./html/wishlist.html" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
+            </RouterLink>
+            <RouterLink to="/wishlist" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
                 <!-- <div class="icon-hot"></div> -->
                 <!-- <i class="fa fa-heart text-red fs-14"></i> -->
                  <font-awesome-icon :icon="['fa','heart']" class="text-red fs-14"/>
                 <span class="ms-2 fs-14">Wishlist</span>
-            </a>
-            <a href="" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
+            </RouterLink>
+            <RouterLink to="" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
                 <!-- <div class="icon-hot"></div> -->
                 <!-- <i class="fa fa-lightbulb text-red fs-14"></i> -->
                 <font-awesome-icon :icon="['fa','lightbulb']" class="text-red fs-14" />
                 <span class="ms-2 fs-14">Hot deals</span>
-            </a>
-            <a href="./html/orders.html" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
+            </RouterLink>
+            <RouterLink to="/orders" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
                 <!-- <div class="icon-hot"></div> -->
                 <!-- <i class="fa fa-box-open text-red fs-14"></i> -->
                  <font-awesome-icon :icon="['fa','box-open']" class="text-red fs-14" />
                 <span class="ms-2 fs-14">Orders</span>
-            </a>
+            </RouterLink>
             <a href="" class="offcanvas-content non-active-nav d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
                 <!-- <div class="icon-hot"></div> -->
                 <!-- <i class="fa fa-cubes text-red fs-14"></i> -->
@@ -65,17 +67,17 @@
         <div id="fullstop" class="rounded rounded-circle mt-3 ms-1"></div>
       </div>
       <div class="col-6 d-flex align-items-center justify-content-end">
-        <a href="../html/account.html" class="text-white fs-18 me-4">
+        <RouterLink to="/account" class="text-white fs-18 me-4">
             <!-- <i class="fa fa-user-circle"></i> -->
              <font-awesome-icon :icon="['fa','user-circle']" />
-        </a>
-        <a href="./html/cart.html">
+        </RouterLink>
+        <RouterLink href="/cart">
             <div class="position-relative mt-1">
                 <!-- <i class="fa fa-cart-plus fs-18 text-white"></i> -->
                  <font-awesome-icon :icon="['fa','cart-plus']" class="fs-18 text-white" />
                 <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">5</span></span>
             </div>
-        </a>
+        </RouterLink>
       </div>
     </div>
   </nav>
@@ -83,5 +85,5 @@
 
 <style scoped>
   /* h1{color: red} */
-  
+
 </style>
