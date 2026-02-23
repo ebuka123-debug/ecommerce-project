@@ -9,8 +9,6 @@
     <!-- <h1>This is the account overview page</h1> -->
 
        <div class="container mt-md-4 mb-5">
-
-
         <div class="row mt-md-4 justify-content-md-evenly">
             <div class="col d-none d-md-block col-md-3 border overflow g-0">
                 <div class="w-100 active d-md-none">
@@ -244,4 +242,7 @@
     background-color: #F1F1F2;
 }
 
+.hover-text-red:hover{
+    color: var(--primary) !important;
+}
 </style>
