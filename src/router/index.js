@@ -48,6 +48,7 @@ import Orders from '../views/OrdersView.vue';
 import Inbox from '../views/InboxView.vue';
 import AddressBook from '../views/AddressBookView.vue';
 import NewsletterPreference from "../views/NewsletterPreferenceView.vue";
+import CanceledOrders from "../views/CanceledOrReturnedOrdersViews.vue";
 const routes = [
   { path: '/', component: Home },
   { path: '/account', component: Account },
@@ -55,8 +56,9 @@ const routes = [
   { path: '/orders', component: Orders },
   { path: '/inbox', component: Inbox },
   { path: '/addressBook', component: AddressBook },
-  { path: '/newsletter', component: NewsletterPreference }
-
+  { path: '/newsletter', component: NewsletterPreference },
+  { path: '/canceledOrders', component: CanceledOrders },
+  
 
 
 ]
