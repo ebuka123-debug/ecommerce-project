@@ -1,0 +1,26 @@
+/* Text styles */
+
+.text-white{
+    color: var(--other) !important
+}
+
+.text-dark{
+    color: var(--tetiary);
+}
+
+.text-red{
+    color: var(--primary)
+}
+
+.text-gold{
+    color: gold;
+}
+
+.text-ash{
+    color: #828A91;
+}
+
+.text-silver{
+    color: var(--silver)
+}
+

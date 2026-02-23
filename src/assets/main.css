@@ -1,0 +1,306 @@
+/* @import './base.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+} */
+
+body{
+  margin: 0px;
+  padding: 0px;
+  /* font-family: 'Inter', sans-serif; */
+  font-family: "Open Sans",sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+:root{
+  --primary: #C51D36;
+  --secondary: #305C9B;
+  --silver : #4d5359;
+  --tetiary: #1A1A1A;
+  --other: #FFFFFF;
+  --icon-width: 20px;
+  --icon-height: 20px;
+  --icon-bg-size: 24px;
+  --icon-border: none;
+  --icon-cursor: pointer;
+
+}
+/* styling of buttons */
+.btn-red{
+
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: var(--primary) !important;
+    --bs-btn-border-color: var(--primary) !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #a2182d !important;
+    --bs-btn-hover-border-color: #C51D36 !important;
+    /* --bs-btn-focus-shadow-rgb: red; */
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #C51D36 !important;
+    --bs-btn-active-border-color: #C51D36 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: var(--primary) !important;
+    --bs-btn-disabled-border-color: var(--primary) !important
+}
+
+.btn-black{
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: var(--tetiary) !important;
+    --bs-btn-border-color: var(--tetiary) !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #1a1a1ab1 !important;
+    --bs-btn-hover-border-color: #1a1a1ab1 !important;
+    /* --bs-btn-focus-shadow-rgb: red; */
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #1a1a1ab1 !important;
+    --bs-btn-active-border-color: #1a1a1a8d !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: var(--tetiary) !important;
+    --bs-btn-disabled-border-color: var(var(--tetiary)) !important
+}
+
+.btn-blue{
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: var(--secondary) !important;
+    --bs-btn-border-color: var(--secondary) !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #a2182d !important;
+    --bs-btn-hover-border-color: #C51D36 !important;
+    /* --bs-btn-focus-shadow-rgb: red; */
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-active-bg: #C51D36 !important;
+    --bs-btn-active-border-color: #C51D36 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-disabled-bg: var(--secondary) !important;
+    --bs-btn-disabled-border-color: var(var(--secondary)) !important
+}
+
+
+
+#fullstop{
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+}
+
+
+/* Navbar design */
+
+.navbar{
+  width: 100%;
+  height: 14vh;
+  /* padding: 20px;; */
+  background-color: var(--tetiary);
+
+  /* border-bottom: 5px solid var(--primary); */
+}
+
+
+.specs-nav{
+    height: 14vh;
+}
+
+#search{
+    width: 90%;
+    height: 60%;
+}
+
+
+#search .form-control,.input-group-text{
+    /* width: 200px !important; */
+    height: 2rem !important;
+    /* height: 10rem; */
+}
+
+/* This badge class is for the add to cart on the navbar*/
+
+.badge{
+    min-width: 18px;
+    min-height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px !important;
+    border: none !important;
+}
+
+
+
+/* Nav tabs containing home page and the rest */
+.nav-tabs{
+    width: 100%;
+    height: 6vh;
+    border-bottom: 2px solid #dddddd;
+
+}
+
+.nav-tabs div{
+    height: 1.5rem;
+    border-bottom: 0;
+    /* border: 1px solid black; */
+}
+
+#nav-tabs{
+    width: 67%;
+    height: 100%;
+    /* border: 1px solid yellow; */
+}
+
+#nav-tabs a{
+    color: var(--silver);
+}
+
+.active-link{
+    color: var(--primary) !important;
+    border-bottom: 2px solid var(--primary);
+}
+
+.active-nav{
+    background-color: var(--secondary);
+}
+.non-active-nav:hover{
+    background-color: #305d9b49 !important;
+}
+
+
+/* Offcanvas */
+
+.offcanvas{
+    max-width: 70% !important;
+    background-color: var(--tetiary);
+    color: var(--other);
+}
+
+.offcanvas-content{
+    width: 100%;
+    height: 40px;
+    color: var(--other) !important;
+
+}
+
+
+@media (max-width: 1024px) {
+    .navbar{
+        width: 100% !important;
+        height: 8vh !important;
+    }
+
+    #nav-tabs{
+        width: 75%;
+        /* border: 1px solid red; */
+    }
+
+    .norm-carousel{
+        width: 100% !important;
+        height: 30vh;
+    }
+
+    .carousel-side{
+        height: 30vh;
+    }
+
+    .card{
+        min-height: 425px !important;
+    }
+
+    .card-img{
+        height: 9rem;
+    }
+
+
+
+}
+
+@media (max-width: 1024px){
+
+    .specs-nav{
+        height: 8vh;
+    }
+
+    #search{
+        width: 80%;
+    }
+
+    .fixed-at-bottom {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .w-sm-75 {
+        width: 75% !important;
+    }
+
+}
+
+/* mobiles */
+@media (max-width: 600px){
+
+    .border-md-none{
+        border: none !important;
+    }
+
+    .img-box-container{
+        height: 110px;
+    }
+    .like-svg{
+        width: 60px;
+        height: 60px;
+    }
+
+    .w-must-75{
+        width: 75% !important;
+    }
+
+    .fixed-at-sm-bottom {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .fs-sm-12{
+        font-size: 12px !important;
+    }
+}

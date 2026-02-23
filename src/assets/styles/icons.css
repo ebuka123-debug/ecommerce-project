@@ -1,0 +1,38 @@
+/*This is the beginning of the styling of Svg used for this project*/
+.icon-bars{
+    width: var(--icon-width);
+    height: var(--icon-height);
+    background: url(/src/assets/svg/bars-sort-svgrepo-com.svg) no-repeat center;
+    background-size: var(--icon-bg-size);
+    border: var(--icon-border);
+    cursor: var(--icon-cursor);
+    /* border: 1px solid yellow */
+
+}
+
+.icon-close{
+    width: var(--icon-width);
+    height: var(--icon-height);
+    background: url(/src/assets/svg/cancel-svgrepo-com.svg) no-repeat center;
+    background-size: var(--icon-bg-size);
+    border: var(--icon-border);
+    cursor: var(--icon-cursor);
+}
+
+.icon-hot{
+    width: var(--icon-width);
+    height: var(--icon-height);
+    background: url(/src/assets/svg/fire-svgrepo-com.svg) no-repeat center;
+    background-size: var(--icon-bg-size);
+    border: var(--icon-border);
+    cursor: var(--icon-cursor);
+}
+
+.icon-category{
+    width: var(--icon-width);
+    height: var(--icon-height);
+    background: url(/src/assets/svg/category-variety-random-shuffle-svgrepo-com.svg) no-repeat center;
+    background-size: var(--icon-bg-size);
+    border: var(--icon-border);
+    cursor: var(--icon-cursor);
+}
