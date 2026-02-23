@@ -146,9 +146,10 @@
             <div class="col-md-9 col-xl-8 ">
                 <div class="row mb-2 mt-3 mt-xl-0">
                     <div class="col-1 border-bottom d-flex align-items-center d-md-none">
-                        <a href="../html/account.html" class="p-2">
-                            <i class="fa fa-arrow-left text-dark"></i>
-                        </a>
+                      <RouterLink to="/account" class="p-2">
+                          <!-- <i class="fa fa-arrow-left text-dark"></i> -->
+                           <font-awesome-icon :icon="['fa','arrow-left']" class="text-dark" />
+                      </RouterLink>
                     </div>
                     <div class="col border-bottom mt-2">
                         <h1 class="fs-20 ms-4 ms-md-0">
@@ -177,9 +178,9 @@
 
                         <h2 class="fs-16 mt-4">You have placed no orders yet!</h2>
                         <p class="fs-14">All your orders will be saved here for you to access their state anytime.</p>
-                        <a href="" class="btn btn-red fs-14 mt-3">
+                        <RouterLink to="/"  class="btn btn-red fs-14 mt-3">
                             Continue shopping
-                        </a>
+                        </RouterLink>
                     </div>
                 </div>
             </div>
