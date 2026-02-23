@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+// import { RouterLink } from 'vue-router';
 
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 </script>

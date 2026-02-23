@@ -44,11 +44,14 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from '../views/HomeView.vue';
 import Account from '../views/AccountView.vue'
 import Wishlist from '../views/WishlistView.vue'
+import Orders from "../views/OrdersView.vue";
 const routes = [
   { path: '/', component: Home },
   { path: '/account', component: Account },
   { path: '/wishlist', component: Wishlist },
+  { path: '/orders', component: Orders },
   
+
 
 ]
 
