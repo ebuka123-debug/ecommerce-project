@@ -67,13 +67,13 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div v-else class="container">
+  <!-- <div v-else class="container">
     <div class="row">
       <div class="col text-center">
         <span class="fs-4">Please reload the page...</span>
       </div>
     </div>
-  </div>
+  </div> -->
 
     <!-- <Product /> -->
   <div class="container mt-5">
