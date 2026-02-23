@@ -45,12 +45,15 @@ import Home from '../views/HomeView.vue';
 import Account from '../views/AccountView.vue'
 import Wishlist from '../views/WishlistView.vue'
 import Orders from "../views/OrdersView.vue";
+import Inbox from "../views/InboxView.vue";
 const routes = [
   { path: '/', component: Home },
   { path: '/account', component: Account },
   { path: '/wishlist', component: Wishlist },
   { path: '/orders', component: Orders },
+  { path: '/inbox', component: Inbox },
   
+
 
 
 ]
