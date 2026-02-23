@@ -165,12 +165,12 @@
                 </div>
                 <div class="p-2">
 
-                    <a href="../html/orders.html" class="border-bottom hover-text-red border-2 fs-sm-12 border-danger fs-14 text-red p-md-2">
+                    <RouterLink to="/orders" class="border-bottom hover-text-red border-2 fs-sm-12 border-danger fs-14 text-red p-md-2">
                         ONGOING/DELIVERED (0)
-                    </a>
-                    <a href="../html/canceledOrReturnedOrders.html" class="fs-14 ms-3 ms-md-0 hover-text-red text-dark p-md-2 fs-sm-12">
+                    </RouterLink>
+                    <RouterLink to="/canceledOrders" class="fs-14 ms-3 ms-md-0 hover-text-red text-dark p-md-2 fs-sm-12">
                         CANCELED/RETURNED (4)
-                    </a>
+                    </RouterLink>
                 </div>
                 <div class="row mt-5 mt-md-0">
                     <div class="col border border-md-none p-md-5 text-center">
