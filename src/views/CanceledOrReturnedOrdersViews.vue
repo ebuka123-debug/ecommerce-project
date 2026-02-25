@@ -104,7 +104,7 @@ const isActiveRoute = (routePath) => {
                     </RouterLink>
                 </div>
                 <div class="w-100">
-                    <RouterLink to="" :class="isActiveRoute('/paymentSettings')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                    <RouterLink to="/paymentSettings" :class="isActiveRoute('/paymentSettings')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa fa-credit-card"></i> -->
@@ -153,9 +153,9 @@ const isActiveRoute = (routePath) => {
               <div class="col-md-9 col-xl-8 ">
                 <div class="row mb-2 mt-3 mt-xl-0">
                     <div class="col-1 border-bottom d-flex align-items-center d-md-none">
-                        <a href="../html/account.html" class="p-2">
-                            <i class="fa fa-arrow-left text-dark"></i>
-                        </a>
+                        <RouterLink to="/account" class="p-2">
+                            <font-awesome-icon :icon="['fa','arrow-left']" class="text-dark"/>
+                        </RouterLink>
                     </div>
                     <div class="col border-bottom mt-2">
                         <h1 class="fs-20 ms-4 ms-md-0">

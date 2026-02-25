@@ -2,6 +2,12 @@
 // import { RouterLink } from 'vue-router';
 
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { useRoute } from 'vue-router';
+const isActiveRoute = (routePath) => {
+  const route = useRoute();
+
+  return route.path === routePath;
+}
 </script>
 <template>
 
@@ -17,7 +23,7 @@
                     </div>
                 </div>
                 <div class="w-100 d-none d-md-block">
-                    <RouterLink to="/account" class="text-dark d-flex justify-content-between align-items-center non-active w-100 ps-2">
+                    <RouterLink to="/account" :class="isActiveRoute('/account')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa-user"></i> -->
@@ -31,8 +37,8 @@
                         </div>
                     </RouterLink>
                 </div>
-                <div class="w-100 non-active">
-                    <RouterLink to="/wishlist" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/wishlist" :class="isActiveRoute('/wishlist')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa-heart"></i> -->
@@ -46,8 +52,8 @@
                         </div>
                     </RouterLink>
                 </div>
-                <div class="w-100 active">
-                    <RouterLink to="/orders" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/orders" :class="isActiveRoute('/orders')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="fa fa-box-open"></i> -->
@@ -61,8 +67,8 @@
                         </div>
                     </RouterLink>
                 </div>
-                <div class="w-100 non-active">
-                    <RouterLink to="/inbox" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/inbox" :class="isActiveRoute('/inbox')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa-envelope"></i> -->
@@ -82,8 +88,8 @@
                     </div>
                 </div>
 
-                <div class="w-100 non-active">
-                    <RouterLink to="/profile" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/profile" :class="isActiveRoute('/profile')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="fas fa-user-cog"></i> -->
@@ -96,8 +102,8 @@
                         </div>
                     </RouterLink>
                 </div>
-                <div class="w-100 non-active">
-                    <RouterLink to="" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/paymentSettings" :class="isActiveRoute('/paymentSettings')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa fa-credit-card"></i> -->
@@ -111,8 +117,8 @@
                     </RouterLink>
                 </div>
 
-                <div class="w-100 non-active">
-                    <RouterLink to="/addressBook" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/addressBook" :class="isActiveRoute('/addressBook')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa fa-address-book"></i> -->
@@ -126,8 +132,8 @@
                     </RouterLink>
                 </div>
 
-                <div class="w-100 non-active">
-                    <RouterLink to="/newsLetter" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
+                <div class="w-100">
+                    <RouterLink to="/newsLetter" :class="isActiveRoute('/newsLetter')? 'active':'non-active'" class="text-dark d-flex justify-content-between align-items-center w-100 ps-2">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
                                 <!-- <i class="far fa fa-envelope-open"></i> -->
