@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 //Checks if the the route path is the current path (The page the user is in is equivalent to the route path)
 const isActiveRoute = (routePath) => {
-  const route = useRoute(routePath);
+  const route = useRoute();
 
   return route.path === routePath
 }
