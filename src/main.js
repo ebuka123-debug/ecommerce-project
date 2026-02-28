@@ -7,6 +7,7 @@ import './assets/main.css'
 import './assets/styles/font-sizes.css'
 import './assets/styles/font-colors.css'
 import './assets/styles/icons.css'
+import './assets/styles/background-colors.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -25,7 +26,8 @@ import {
   faLaptop, faStar,faPencilAlt,
   faAngleRight,faEnvelope,faUserCog,
   faCreditCard,faAddressBook,faEnvelopeOpen,
-  faArrowLeft,
+  faArrowLeft,faCarSide,faFileAlt,
+  faShieldCat,
 } from '@fortawesome/free-solid-svg-icons'
 
 // add icons you need
@@ -36,7 +38,8 @@ library.add(
   faLaptop, faStar, faPencilAlt,
   faAngleRight, faEnvelope, faUserCog,
   faCreditCard, faAddressBook, faEnvelopeOpen,
-  faArrowLeft
+  faArrowLeft, faCarSide, faFileAlt,
+  faShieldCat
 )
 const app = createApp(App)
 
