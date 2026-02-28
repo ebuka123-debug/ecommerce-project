@@ -101,7 +101,7 @@ onMounted(() => {
                   <!-- <i class="fa fa-star text-ash"></i> -->
               </p>
               <p class="card-text"><b class="ms-md-3 text-silver">${{ product.price }}</b> <del class="ms-4 text-ash">${{ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }}</del></p>
-              <a href="./html/productDetails.html" class="btn btn-sm btn-red w-100 add" data-product="${electronicProduct.id}">Buy now</a>
+              <RouterLink to="/products/" class="btn btn-sm btn-red w-100 add" data-product="${electronicProduct.id}">Buy now</RouterLink>
             </div>
           </div>
         </div>
