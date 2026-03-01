@@ -53,15 +53,16 @@ import NotFound from "../views/NotFoundView.vue";
 import ProductDetails from "../views/ProductDetails.vue";
 const routes = [
   { path: '/', component: Home },
-  { path: '/account', component: Account },
-  { path: '/wishlist', component: Wishlist },
-  { path: '/orders', component: Orders },
-  { path: '/inbox', component: Inbox },
-  { path: '/addressBook', component: AddressBook },
-  { path: '/newsletter', component: NewsletterPreference },
-  { path: '/canceledOrders', component: CanceledOrders },
+  { path: '/account', name: 'account', component: Account },
+  { path: '/wishlist', name: 'wishlist', component: Wishlist },
+  { path: '/orders', name: 'orders', component: Orders },
+  { path: '/inbox', name: 'inbox', component: Inbox },
+  { path: '/addressBook', name: 'addressBook', component: AddressBook },
+  { path: '/newsletter', name: 'newsletter', component: NewsletterPreference },
+  { path: '/canceledOrders', name: 'canceledOrders', component: CanceledOrders },
+  { path: '/product/:id', component: ProductDetails },
   { path: '/:catchAll(.*)', component: NotFound },
-  { path: '/products', component: ProductDetails },
+  
 
 
 ]
