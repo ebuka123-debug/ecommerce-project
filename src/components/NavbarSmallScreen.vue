@@ -22,7 +22,7 @@ import Offcanvas from './OffcanvasComp.vue';
             <!-- <i class="fa fa-user-circle"></i> -->
              <font-awesome-icon :icon="['fa','user-circle']" />
         </RouterLink>
-        <RouterLink href="/cart">
+        <RouterLink to="/cart">
             <div class="position-relative mt-1">
                 <!-- <i class="fa fa-cart-plus fs-18 text-white"></i> -->
                  <font-awesome-icon :icon="['fa','cart-plus']" class="fs-18 text-white" />
