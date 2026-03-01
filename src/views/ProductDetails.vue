@@ -226,6 +226,7 @@
               </ul>
           </div>
       </div>
+      <!-- product details -->
       <div class="row mb-3">
           <div class="col-xl-8 g-0">
               <div class="card rounded-0  mb-3" >
@@ -310,6 +311,7 @@
               </div>
           </div>
       </div>
+      <!-- specifications component-->
       <div class="row border mb-3">
           <div class="col-xl-8">
               <div class="mt-4 mb-4">
@@ -370,6 +372,7 @@
           </div>
       </div>
 
+      <!-- verification component -->
       <div class="row ">
           <div class="col-xl-8">
               <div class="mt-4 mb-4 border-bottom">
