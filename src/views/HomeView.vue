@@ -15,6 +15,8 @@ const products = ref([]);
       products.value = data.products;
       console.log(products.value);
 
+      localStorage.setItem("Product-data", JSON.stringify(products.value));
+
     }
     catch (error) {
       console.log(error);
