@@ -25,6 +25,17 @@ const products = ref([]);
 
   }
 
+
+
+const saveToStorageOnclickBuyNow = (productId) => {
+  const matchedProduct = products.value.find(value => {
+      return value.id === productId;
+  })
+  // save to local storage
+  localStorage.setItem("products", JSON.stringify(matchedProduct))
+
+}
+
 onMounted(() => {
   fetchProducts();
 
@@ -82,7 +93,7 @@ onMounted(() => {
           <li v-for="(product, index) in products" :key="index">{{ product }}</li>
         </ul> -->
 
-        <div v-for="product in products" :key="product" class="col-6 g-2 g-md-3 col-md-4 mb-1 mb-md-3 col-xl-3">
+        <div v-for="product in products" :key="product.id" class="col-6 g-2 g-md-3 col-md-4 mb-1 mb-md-3 col-xl-3">
           <div class="card border">
             <div class="card-body">
               <div class="card-img mb-4">
@@ -101,7 +112,7 @@ onMounted(() => {
                   <!-- <i class="fa fa-star text-ash"></i> -->
               </p>
               <p class="card-text"><b class="ms-md-3 text-silver">${{ product.price }}</b> <del class="ms-4 text-ash">${{ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }}</del></p>
-              <RouterLink to="/products/" class="btn btn-sm btn-red w-100 add" data-product="${electronicProduct.id}">Buy now</RouterLink>
+              <RouterLink v-if="product.id" :to="`/product/${product.id}`" @click="saveToStorageOnclickBuyNow(product.id)" class="btn btn-sm btn-red w-100 add" data-product="${electronicProduct.id}">Buy now</RouterLink>
             </div>
           </div>
         </div>
