@@ -62,7 +62,7 @@ const routes = [
   { path: '/canceledOrders', name: 'canceledOrders', component: CanceledOrders },
   { path: '/product/:id', component: ProductDetails },
   { path: '/:catchAll(.*)', component: NotFound },
-  
+
 
 
 ]
