@@ -1,14 +1,45 @@
 <script setup>
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import NotFoundComponent from '@/components/NotFoundComponent.vue';
+
+//Data of products that are stored in the local storage
+const data = JSON.parse(localStorage.getItem("Product-data"));
+
+//data of the product that was cliked to buy now
+const product = ref(JSON.parse(localStorage.getItem("products")));
+
+
+//route
+const route = useRoute();
+
+// console.log(route.path);
+
+console.log(product.value);
+
+const routeParameterId = route.params.id;
+
+const productExist = ref(false);
+
+data.forEach(element => {
+  // console.log(element);
+  if (element.id === Number(routeParameterId)) {
+    productExist.value = true;
+  }
+});
+
+
+
 </script>
 
 <template>
-  <div class="container mt-4">
+  <div v-if="productExist" class="container mt-4">
       <div class="row mb-3">
           <div class="col-xl-8 border-slim rounded">
               <div id="product-column" class="row mt-md-4">
                   <div class="col-md-6 col-xl-4">
                       <div class="product-image-box">
-                          <img src="../assets/images/macbook.jpg" class="img-fluid" alt="">
+                          <img :src="product.images[0]" class="img-fluid" alt="">
                       </div>
                   </div>
                   <div class="col-md-6 col-xl-8 mt-4 mt-xl-0 product-details-box">
@@ -36,7 +67,7 @@
                           <div class="col border-bottom">
                               <h1 class="fs-20 product-title">
                                 <!-- Product title -->
-                                Eyeshadow Palette with Mirror
+                                {{ product.title }}
                               </h1>
 
                           </div>
@@ -48,7 +79,7 @@
                                   <span class="fs-24">
                                       <b class="product-price">
                                           <!-- $${product.price} -->
-                                           $13.4
+                                           ${{ product.price }}
                                       </b>
                                   </span>
                               </div>
@@ -56,14 +87,14 @@
                                   <span class="fs-16 text-ash">
                                       <del class="product-ogpr">
                                           <!-- $${originalPrice} -->
-                                           $20
+                                           ${{ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }}
                                       </del>
                                   </span>
                               </div>
                               <div id="discount" class="width-fit-content d-flex align-items-center ms-3 h-30 ps-1 pe-1">
                                   <span class="fs-16 product-discount">
                                       <!-- -${product.discountPercentage}% -->
-                                       -30%
+                                       -{{product.discountPercentage}}%
                                   </span>
                               </div>
                           </div>
@@ -72,7 +103,8 @@
                           <div class="col ms-1">
                               <span class="text-ash availability-Status">
                                   <!-- ${product.availabilityStatus} -->
-                                   In stock
+                                   <!-- In stock -->
+                                    {{ product.availabilityStatus }}
                               </span>
                           </div>
                       </div>
@@ -553,6 +585,9 @@
               </div>
           </div>
       </div>
+  </div>
+  <div v-else>
+    <NotFoundComponent />
   </div>
 </template>
 
