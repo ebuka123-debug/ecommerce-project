@@ -1,7 +1,8 @@
 <script setup>
 </script>
 <template>
- <div class="card">
+  <div class="body">
+    <div class="card">
         <div class="logo">
             <span class="logo-text">Specs</span>
             <div class="logo-dot"></div>
@@ -28,7 +29,8 @@
                 Don't have an account? <a href="./signUp.html">Sign up</a>
             </p>
         </form>
-    </div>
+  </div>
+  </div>
 </template>
 <style scoped>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +50,7 @@
             --other-color: #22A4F1;
         }
 
-        body {
+        .body {
             min-height: 100vh;
             display: flex;
             align-items: center;

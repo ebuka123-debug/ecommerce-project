@@ -2,7 +2,8 @@
 </script>
 
 <template>
-<div class="card">
+<div class="body">
+  <div class="card">
         <div class="logo">
             <span class="logo-text">Specs</span>
             <div class="logo-dot"></div>
@@ -48,6 +49,7 @@
             </p>
         </form>
 </div>
+</div>
 </template>
 
 <style scoped>
@@ -68,7 +70,7 @@
             --other-color: #22A4F1;
         }
 
-        body {
+        .body {
             min-height: 100vh;
             display: flex;
             align-items: center;
