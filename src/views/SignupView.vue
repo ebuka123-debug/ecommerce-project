@@ -83,7 +83,7 @@
 
         .card {
             width: 100%;
-            max-width: 420px;
+            max-width: 480px !important;
             background: var(--card-bg);
             border-radius: 20px;
             padding: 48px 40px 40px;
@@ -124,14 +124,14 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 15px !important;
         }
 
         /* Divider */
         .divider {
             height: 1px;
             background: linear-gradient(to right, transparent, var(--border), transparent);
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
 
         /* Form fields */
@@ -217,5 +217,41 @@
             transition: color 0.2s;
         }
         .footer-text a:hover { color: var(--primary); }
+
+        /* Two-column row */
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .field-row .field {
+            margin-bottom: 0;
+        }
+
+        /* Submit button */
+        .btn-signup {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.2px;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(197, 29, 54, 0.3);
+            margin-top: 8px;
+            margin-bottom: 24px;
+        }
+        .btn-signup:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 18px rgba(197, 29, 54, 0.38);
+        }
+        .btn-signup:active { transform: scale(0.99); }
+
 
 </style>
