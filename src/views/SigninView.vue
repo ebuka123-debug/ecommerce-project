@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 </script>
 <template>
   <div class="body">
@@ -26,7 +27,7 @@
             <button type="submit" class="btn-signin">Sign in</button>
 
             <p class="footer-text">
-                Don't have an account? <a href="./signUp.html">Sign up</a>
+                Don't have an account? <RouterLink to="/signup">Sign up</RouterLink>
             </p>
         </form>
   </div>
@@ -35,30 +36,17 @@
 <style scoped>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --primary: #C51D36;
-            --primary-dark: #a2182d;
-            --primary-light: rgba(34, 164, 241, 0.5);
-            /* --primary-light: rgba(13, 110, 253, 0.65); */
-            --secondary: #305C9B;
-            --text: #1A1A1A;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --bg: #f0f0f0;
-            --card-bg: #ffffff;
-            --input-bg: #fafafa;
-            --other-color: #22A4F1;
-        }
+
 
         .body {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--bg);
+            background-color: var(--bg) !important;
             background-image:
                 radial-gradient(ellipse at 20% 20%, rgba(197, 29, 54, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(48, 92, 155, 0.05) 0%, transparent 50%);
+                radial-gradient(ellipse at 80% 80%, rgba(48, 92, 155, 0.05) 0%, transparent 50%) !important;
             font-family: 'DM Sans', sans-serif;
             padding: 24px;
         }
@@ -87,7 +75,7 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            margin-bottom: 2px;
+            margin-bottom: 5px;
         }
         .logo-text {
             font-size: 32px;
@@ -106,11 +94,12 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         /* Divider */
         .divider {
+            width: 100%;
             height: 1px;
             background: linear-gradient(to right, transparent, var(--border), transparent);
             margin-bottom: 28px;
@@ -135,7 +124,7 @@
             padding: 13px 16px;
             border: 1.5px solid var(--border);
             border-radius: 10px;
-            background: var(--input-bg);
+            background: var(--input-bg) !important;
             font-family: inherit;
             font-size: 15px;
             color: var(--text);
