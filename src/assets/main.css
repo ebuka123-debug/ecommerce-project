@@ -58,6 +58,16 @@ a{
   --icon-bg-size: 24px;
   --icon-border: none;
   --icon-cursor: pointer;
+            --primary-dark: #a2182d;
+            --primary-light: rgba(34, 164, 241, 0.5);
+            /* --primary-light: rgba(13, 110, 253, 0.65); */
+            --text: #1A1A1A;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --bg: #f0f0f0;
+            --card-bg: #ffffff;
+            --input-bg: #fafafa;
+            --other-color: #22A4F1;
 
 }
 /* styling of buttons */
