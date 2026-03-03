@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -27,25 +28,22 @@
                 <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
             </div>
 
-            <div class="row">
-               <div class="col-md-6">
-                    <div class="field">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="••••••••" autocomplete="new-password">
-                    </div>
-               </div>
-               <div class="col-md-6">
-                   <div class="field">
-                        <label for="confirm">Confirm password</label>
-                        <input type="password" id="confirm" placeholder="••••••••" autocomplete="new-password">
-                    </div>
-               </div>
-            </div>
+            <!-- With this -->
+<div class="field-row">
+  <div class="field">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="••••••••" autocomplete="new-password">
+  </div>
+  <div class="field">
+    <label for="confirm">Confirm password</label>
+    <input type="password" id="confirm" placeholder="••••••••" autocomplete="new-password">
+  </div>
+</div>
 
             <button type="submit" class="btn-signup">Sign up</button>
 
             <p class="footer-text">
-                Already have an account? <a href="./signIn.html">Sign in</a>
+                Already have an account? <RouterLink to="/signin">Sign in</RouterLink>
             </p>
         </form>
 </div>
@@ -55,20 +53,7 @@
 <style scoped>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --primary: #C51D36;
-            --primary-dark: #a2182d;
-            --primary-light: rgba(34, 164, 241, 0.5);
-            /* --primary-light: rgba(13, 110, 253, 0.65); */
-            --secondary: #305C9B;
-            --text: #1A1A1A;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --bg: #f0f0f0;
-            --card-bg: #ffffff;
-            --input-bg: #fafafa;
-            --other-color: #22A4F1;
-        }
+
 
         .body {
             min-height: 100vh;
@@ -131,6 +116,7 @@
 
         /* Divider */
         .divider {
+            width: 100%;
             height: 1px;
             background: linear-gradient(to right, transparent, var(--border), transparent);
             margin-bottom: 20px;
@@ -255,5 +241,10 @@
         }
         .btn-signup:active { transform: scale(0.99); }
 
+        @media (max-width: 576px) {
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+}
 
 </style>
