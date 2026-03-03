@@ -51,6 +51,8 @@ import NewsletterPreference from "../views/NewsletterPreferenceView.vue";
 import CanceledOrders from "../views/CanceledOrReturnedOrdersViews.vue";
 import NotFound from "../views/NotFoundView.vue";
 import ProductDetails from "../views/ProductDetails.vue";
+import Signup from "../views/SignupView.vue";
+import Signin from "../views/SigninView.vue";
 const routes = [
   { path: '/', component: Home },
   { path: '/account', name: 'account', component: Account },
@@ -60,6 +62,8 @@ const routes = [
   { path: '/addressBook', name: 'addressBook', component: AddressBook },
   { path: '/newsletter', name: 'newsletter', component: NewsletterPreference },
   { path: '/canceledOrders', name: 'canceledOrders', component: CanceledOrders },
+  { path: '/signup', name: 'signup', component: Signup },
+  { path: '/signin', name: 'signin', component: Signin },
   { path: '/product/:id', component: ProductDetails },
   { path: '/:catchAll(.*)', component: NotFound },
 
