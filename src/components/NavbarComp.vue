@@ -27,9 +27,9 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li class="d-flex justify-content-center mt-2 mb-3">
-                      <a href="../html/signIn.html" class="btn btn-red w-75 shadow">
+                      <RouterLink to="/signin" class="btn btn-red w-75 shadow">
                           sign in
-                      </a>
+                      </RouterLink>
                   </li>
                   <li>
                       <!-- <a href="../html/account.html">
@@ -54,14 +54,14 @@
                   </li>
               </ul>
           </div>
-          <a href="./html/cart.html" class="text-white d-flex">
+          <RouterLink to="/cart" class="text-white d-flex">
               <div class="position-relative">
                   <!-- <i class="fa fa-cart-plus"></i> -->
                     <font-awesome-icon :icon="['fa','cart-plus']" />
                   <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">5</span></span>
               </div>
               <span class="ms-3">Cart</span>
-          </a>
+          </RouterLink>
       </div>
     </div>
   </nav>
