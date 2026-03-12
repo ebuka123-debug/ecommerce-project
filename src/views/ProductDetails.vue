@@ -6,23 +6,24 @@ import NotFoundComponent from '@/components/NotFoundComponent.vue';
 //Data of products that are stored in the local storage
 const data = JSON.parse(localStorage.getItem("Product-data"));
 
-//data of the product that was cliked to buy now
+//Data of the product that was cliked to buy now
 const product = ref(JSON.parse(localStorage.getItem("products")));
 
+//Cart data
+const cartData = JSON.parse(localStorage.getItem("cart"));
 
 //route
 const route = useRoute();
 
-// console.log(route.path);
-
-console.log(product.value);
-
+//parameter or id
 const routeParameterId = route.params.id;
 
+//products exist set to false
 const productExist = ref(false);
 
+//looping throught the data of products
 data.forEach(element => {
-  // console.log(element);
+  // checks if id's (parameter) or in the product data matches the parameter on the route
   if (element.id === Number(routeParameterId)) {
     productExist.value = true;
   }
