@@ -1,33 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useProducts } from '@/composables/useProducts';
 import Carousel from '@/components/CarouselComp.vue';
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-const products = ref([]);
-  const loading = ref(false);
-  const fetchProducts = async () => {
-    try {
-      loading.value = true;
-      const res = await fetch("https://dummyjson.com/products");
-
-      const data = await res.json();
-
-      products.value = data.products;
-      console.log(products.value);
-
-      localStorage.setItem("Product-data", JSON.stringify(products.value));
-
-    }
-    catch (error) {
-      console.log(error);
-    }
-    finally {
-      loading.value = false;
-    }
-
-  }
-
-
+const { loading, products, fetchProducts } = useProducts();
 
 const saveToStorageOnclickBuyNow = (productId) => {
   const matchedProduct = products.value.find(value => {
