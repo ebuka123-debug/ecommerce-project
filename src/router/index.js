@@ -55,7 +55,8 @@ import AddressBook from "@/views/AddressBookView.vue";
 import NewsletterPreference from "@/views/NewsletterPreferenceView.vue";
 import CanceledOrders from "@/views/CanceledOrReturnedOrdersViews.vue";
 import NotFound from "@/views/NotFoundView.vue";
-import ProductDetails from "@/views/ProductDetails.vue";
+import ProductDetails from "@/views/ProductDetailsView.vue";
+import CartView from "@/views/CartView.vue";
 
 // AuthLayouts children
 import Signup from "@/views/SignupView.vue";
@@ -112,6 +113,12 @@ const routes = [
         name: 'canceledOrders',
         component: CanceledOrders,
         meta: {title: 'CanceledOrders'}
+      },
+      {
+        path: '/cart',
+        name: 'cart',
+        component: CartView,
+        meta: { title: 'Cart' }
       },
       {
         path: '/product/:id',
