@@ -226,6 +226,10 @@ a{
 
 }
 
+#discount{
+    background-color: hsla(351, 74%, 44%, 0.11);
+    color: #C51D36;
+}
 
 @media (max-width: 1024px) {
     .navbar{
