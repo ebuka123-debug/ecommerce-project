@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed} from 'vue';
 import { useRoute } from 'vue-router';
 import NotFoundComponent from '@/components/NotFoundComponent.vue';
+import { useCart,addCart,plusOnclickevent,minusOnclickevent } from '@/composables/cartMethods';
+
+const { productExistInCartStatus } = useCart();
 
 //Data of products that are stored in the local storage
 const data = JSON.parse(localStorage.getItem("Product-data"));
@@ -10,8 +13,10 @@ const data = JSON.parse(localStorage.getItem("Product-data"));
 const product = ref(JSON.parse(localStorage.getItem("products")));
 
 //Cart data
-const cartData = JSON.parse(localStorage.getItem("cart"));
+const cartData = ref(JSON.parse(localStorage.getItem("cart")));
 
+//original price of product
+const originalPrice = ref((product.value.price / (1 - product.value.discountPercentage / 100)).toFixed(2));
 //route
 const route = useRoute();
 
@@ -21,6 +26,18 @@ const routeParameterId = route.params.id;
 //products exist set to false
 const productExist = ref(false);
 
+//add to cart display set to false
+const addToCartDisplayStatus = ref(false);
+
+//plus or minus display set to false
+const plusOrMinusDisplay = ref(false);
+
+//product in cart arraow function that checks if product is in cart
+const productInCart = computed(() => {
+  return cartData.value === null || !productExistInCartStatus(product.value.id, cartData.value) ?
+    addToCartDisplayStatus.value = true : plusOrMinusDisplay.value = true;
+})
+
 //looping throught the data of products
 data.forEach(element => {
   // checks if id's (parameter) or in the product data matches the parameter on the route
@@ -29,8 +46,52 @@ data.forEach(element => {
   }
 });
 
+//product quantity
+const productQuantity = ref(
+  JSON.parse(localStorage.getItem("cart"))?.find(
+    item => item.id === product.value.id
+  )?.quantity || 1
+);
 
+function electronicProduct(){
+   const electronicProduct = {
+        id: product.value.id,
+        name: product.value.title,
+        price: product.value.price,
+        quantity: productQuantity.value,
+        discountPercentage: product.value.discountPercentage,
+        ProductAvailabilityStatus: product.value.availabilityStatus,
+        productFirstPrice: originalPrice.value,
+        image: product.value.images[0]
+   };
 
+  return electronicProduct;
+}
+
+//details of the product stored here
+const completeProductDetails = ref(electronicProduct());
+
+const isLoading = ref(false);
+
+function addItemOnClick(){
+  plusOnclickevent(productQuantity, completeProductDetails.value, product.value.id);
+}
+
+function removeItemOnClick() {
+  minusOnclickevent(productQuantity, completeProductDetails.value, product.value.id);
+}
+function startTimer() {
+  const productBeingClicked = electronicProduct();
+  addCart(productBeingClicked);
+  isLoading.value = true;
+  addToCartDisplayStatus.value = false;
+  //Take a second and display the adding and minusing section
+  setTimeout(() => {
+    isLoading.value = false;
+    plusOrMinusDisplay.value = true;
+
+  }, 2000)
+}
 </script>
 
 <template>
@@ -88,7 +149,7 @@ data.forEach(element => {
                                   <span class="fs-16 text-ash">
                                       <del class="product-ogpr">
                                           <!-- $${originalPrice} -->
-                                           ${{ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }}
+                                           ${{ originalPrice}}
                                       </del>
                                   </span>
                               </div>
@@ -126,15 +187,52 @@ data.forEach(element => {
                               <!-- <i class="fa fa-star"></i> -->
                           </div>
                       </div>
+
+
                       <!-- When the product is not yet added to cart -->
-                      <div class="row fixed-at-bottom d-flex justify-content-center bg-white mt-3 pt-3 pb-3 pt-md-4 pb-md-4 pt-xl-0 pb-xl-0">
-                        <div class="col-12 d-flex justify-content-center">
-                            <div class="btn btn-red w-100 w-sm-75 shadow-sm add-to-cart">
+                      <div v-if="productInCart">
+                        <div class="row fixed-at-bottom d-flex justify-content-center bg-white mt-3 pt-3 pb-3 pt-md-4 pb-md-4 pt-xl-0 pb-xl-0">
+                          <div class="col-12 d-flex justify-content-center">
+                            <div v-if="addToCartDisplayStatus" @click="startTimer" class="btn btn-red w-100 w-sm-75 shadow-sm add-to-cart">
                                 Add to cart
                             </div>
+
+                            <div v-if="isLoading" class="w-100 loader d-flex justify-content-center mb-5">
+                                <div class="spinner-border text-danger" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+
+                          </div>
                         </div>
+
+
                       </div>
 
+                        <div v-if="plusOrMinusDisplay" class="row">
+                          <div class="col d-flex align-items-center adding-minusing-section">
+                            <div @click="removeItemOnClick()" class="btn btn-sm btn-red minus-item-btn ms-1">
+
+                                <font-awesome-icon :icon="['fa','minus']" />
+                            </div>
+                            <div class="ms-3 product-amount">
+                                <span>
+                                    {{productQuantity}}
+
+                                </span>
+                            </div>
+                            <div @click=" addItemOnClick()" class="btn btn-sm btn-red ms-3 add-item-btn">
+
+                                <font-awesome-icon :icon="['fa','plus']" />
+                            </div>
+                            <div class=" ms-3 items-quantity-read">
+                                <span>
+
+                                      {{productQuantity}} item(s) added
+                                </span>
+                            </div>
+                          </div>
+                        </div>
                   </div>
               </div>
           </div>
@@ -206,7 +304,6 @@ data.forEach(element => {
                   </li>
                   <li class="list-group-item d-flex jn lh-sm pt-4">
                       <div class="icon-box rounded d-flex justify-content-center align-items-center">
-                          <!-- <i class="fa fa-car-side text-ash"></i> -->
                            <font-awesome-icon :icon="['fa','car-side']" class="text-ash" />
                       </div>
                       <div class="w-100 content-box ps-2">
