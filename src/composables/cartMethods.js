@@ -1,3 +1,12 @@
+export function useCart() {
+  const productExistInCartStatus = (token, data) => {
+    return data.some(item => item.id === token)
+  }
+
+  return { productExistInCartStatus }
+
+}
+
 //adds product to cart and save it to local storage
 export function addCart(product) {
 
