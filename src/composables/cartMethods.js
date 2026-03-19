@@ -73,3 +73,23 @@ export function plusOnclickevent(productQuantity,item,itemId) {
   }
 
 }
+
+
+export function totalPriceOfItems(productCart) {
+  // Filter out any falsy/undefined items from the cart, then
+  // multiply each item's quantity by its price to get the total price per item
+  const totalPricesOfEachItem = productCart
+    .filter(element => element)
+    .map(element => element.quantity * element.price)
+
+  // Add up all the individual item prices into one subtotal
+  const subtotalOfPricesInCart = totalPricesOfEachItem
+    .reduce((initial, itemPrice) => initial + itemPrice, 0)
+
+  // Format the number with commas and round to 2 decimal places,
+  // then return the final subtotal
+  return subtotalOfPricesInCart.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
