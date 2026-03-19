@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed} from 'vue';
 import { useRoute } from 'vue-router';
-import NotFoundComponent from '@/components/NotFoundComponent.vue';
+import NotFoundComponent from '@/components/NotFoundComp.vue';
 import { useCart,addCart,plusOnclickevent,minusOnclickevent } from '@/composables/cartMethods';
 
 const { productExistInCartStatus } = useCart();
