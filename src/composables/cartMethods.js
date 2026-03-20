@@ -55,7 +55,8 @@ export function minusOnclickevent(productQuantity,item,itemId) {
 }
 
 //plus button click event
-export function plusOnclickevent(productQuantity,item,itemId) {
+export function plusOnclickevent(productQuantity, item, itemId) {
+
 
   // console.log("you clicked the plus button");
   const cart = JSON.parse(localStorage.getItem("cart"));
