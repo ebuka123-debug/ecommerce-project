@@ -1,111 +1,135 @@
 <script setup>
 import { defineProps, ref, defineEmits } from 'vue';
 import { minusOnclickevent, plusOnclickevent} from '@/composables/cartMethods';
-// const a = ref(0);
+
+// Accept the product object from the parent component
 const props = defineProps({
   product: Object
 })
 
-
+// Emit an event to the parent when the remove button is clicked
 const emit = defineEmits(['remove-clicked'])
 
-// Local ref to track quantity display
+// Local ref to track and update the quantity display reactively
 const productQuantity = ref(props.product.quantity)
+
+// Decrease the product quantity by 1
+const handleMinus = () => {
+  minusOnclickevent(productQuantity, props.product, props.product.id)
+}
+
+// Increase the product quantity by 1
+const handlePlus = () => {
+  plusOnclickevent(productQuantity, props.product, props.product.id)
+}
 </script>
+
 <template>
   <div class="row mt-4 mt-xl-3 mb-3 pt-md-2 border-4 border-bottom pb-2" data-product-id="">
+
+    <!-- Product Image -->
     <div class="col-4 col-md-3 col-xl-2 gx-2 gx-md-4">
         <div class="image-box ms-2">
             <img :src="product.image">
         </div>
     </div>
 
+    <!-- Product Details -->
     <div class="col-8 col-md-9 cart-item col-xl-10">
       <div class="row mt-2 mt-xl-0">
         <div class="col-12 col-xl-9">
+
+            <!-- Product Name -->
             <div>
                 <h3 class="fs-14">
-                    <!-- Eyeshadow Palette with Mirror -->
                      {{ product.name }}
                 </h3>
             </div>
-            <div class="d-flex w-100 d-flex">
 
+            <!-- Product Pricing -->
+            <div class="d-flex w-100 d-flex">
                 <div class="w-100 d-flex align-items-center">
+
+                    <!-- Current Price -->
                     <div class="me-2 fs-17">
-                        <b>
-                            <!-- $19.99 -->
-                             ${{ product.price }}
-                        </b>
+                        <b>${{ product.price }}</b>
                     </div>
 
+                    <!-- Original Price (crossed out) -->
                     <div>
                         <del class="text-ash fs-14">
-                            <!-- $24.43 -->
                              ${{ product.productFirstPrice }}
                         </del>
                     </div>
+
+                    <!-- Discount Percentage -->
                     <div id="discount" class="p-1 ms-3">
-                        <!-- -18.19% -->
                          -{{ product.discountPercentage }}%
                     </div>
+
                 </div>
             </div>
 
         </div>
       </div>
+
+      <!-- Product Availability and Specs -->
       <div class="row">
           <div class="col">
+
+              <!-- Stock Status -->
               <span class="text-ash fs-14">
-                  <!-- in stock -->
                    {{ product.ProductAvailabilityStatus }}
               </span>
+
               <div class="d-flex align-items-center">
                   <div class="row w-100">
                       <div class="col d-flex align-items-center">
-                          <b class="fs-6">
-                              Specs
-                          </b>
-
+                          <b class="fs-6">Specs</b>
                           <div id="fullstop" class="rounded-circle ms-1 mt-1"></div>
                       </div>
-
                   </div>
-
-
               </div>
+
           </div>
       </div>
 
     </div>
 
+    <!-- Action Buttons Row -->
     <div class="row mt-2">
+
+      <!-- Remove Item Button -->
       <div class="col mt-2">
-          <div @click="emit('remove-clicked',product)" class="text-red btn btn-sm rounded-0 p-2 ms-md-2 remove-item border">
+          <div @click="emit('remove-clicked', product)" class="text-red btn btn-sm rounded-0 p-2 ms-md-2 remove-item border">
             <font-awesome-icon :icon="['fa','trash']" />
             Remove
           </div>
       </div>
+
+      <!-- Quantity Controls -->
       <div class="col d-flex align-items-center justify-content-end">
-        <!-- Minus button -->
-          <div @click="minusOnclickevent(productQuantity, product, product.id)"  class="btn btn-sm btn-red minus-item-btn">
+
+          <!-- Decrease Quantity -->
+          <div @click="handleMinus()" class="btn btn-sm btn-red minus-item-btn">
               <font-awesome-icon :icon="['fa', 'fa-minus']"/>
           </div>
-        <!-- Quantity display -->
+
+          <!-- Current Quantity -->
           <div class="ms-4 product-amount">
-              <span>
-                  {{ product.quantity }}
-              </span>
+              <span>{{ productQuantity }}</span>
           </div>
-        <!-- Plus button -->
-          <div @click="plusOnclickevent(productQuantity, product, product.id)" class="btn btn-sm btn-red ms-4 add-item-btn">
+
+          <!-- Increase Quantity -->
+          <div @click="handlePlus()" class="btn btn-sm btn-red ms-4 add-item-btn">
               <font-awesome-icon :icon="['fa', 'fa-plus']"/>
           </div>
+
       </div>
     </div>
+
   </div>
 </template>
-
 <style scoped>
 .remove-item:hover{
     background-color: #c51d364d;
