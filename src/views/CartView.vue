@@ -237,11 +237,25 @@ console.log(cart.value);
   transform: scale(1);
 } */
 
-@media (max-width: 1024px){
+@media (max-width: 1199px){
 
     .modal-content{
         width: 96%;
         height: auto;
+    }
+
+       form {
+        display: block !important;
+    }
+
+    .card {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    .card > .card-body {
+        flex: 0 0 auto !important;
+        height: auto !important;
     }
 }
 

@@ -125,7 +125,7 @@ function startTimer() {
 
                           </div>
                       </div>
-                      <div class="row mt-2 mt-md-0">
+                      <div class="row mt-1 mt-md-2 mt-xl-0">
                           <div class="col border-bottom">
                               <h1 class="fs-20 product-title">
                                 <!-- Product title -->
@@ -135,7 +135,7 @@ function startTimer() {
                           </div>
 
                       </div>
-                      <div class="row mt-3 mt-xl-4 mb-1">
+                      <div class="row mt-2 mt-md-3 mt-xl-4 mb-1">
                           <div class="col d-flex align-items-center">
                               <div class="width-fit-content">
                                   <span class="fs-24">
@@ -161,7 +161,7 @@ function startTimer() {
                               </div>
                           </div>
                       </div>
-                      <div id="stock" class="row mb-1">
+                      <div id="stock" class="row mb-md-1">
                           <div class="col ms-1">
                               <span class="text-ash availability-Status">
                                   <!-- ${product.availabilityStatus} -->
@@ -170,7 +170,7 @@ function startTimer() {
                               </span>
                           </div>
                       </div>
-                      <div id="shipping-from" class="row mb-3">
+                      <div id="shipping-from" class="row mb-2 mb-md-3">
                           <div class="col ms-1">
                               <span class="">
                                   + shipping from $1500 to Lekki
@@ -511,7 +511,7 @@ function startTimer() {
                   </h2>
               </div>
               <div class="row">
-                  <div class="col-md-6 col-xl-4 border-end">
+                  <div class="col-md-6 col-xl-4 d-flex flex-column align-items-center align-items-md-start border-end">
                       <div class="mt-3">
                           <span>
                               VERIFIED RATINGS (1234)
@@ -753,7 +753,7 @@ function startTimer() {
     /* border: 0.5px solid black; */
 }
 
-@media (max-width: 1024px){
+@media (max-width: 1199px){
     #product-column{
         height: auto;
     }
@@ -765,6 +765,20 @@ function startTimer() {
     #rating-box{
         width: 200px;
         height: 150px;
+    }
+
+        form {
+        display: block !important;
+    }
+
+    .card {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    .card > .card-body {
+        flex: 0 0 auto !important;
+        height: auto !important;
     }
 }
 </style>
