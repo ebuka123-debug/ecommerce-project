@@ -28,7 +28,8 @@ import {
   faCreditCard,faAddressBook,faEnvelopeOpen,
   faArrowLeft,faCarSide,faFileAlt,
   faShieldCat,faMinus,faPlus,
-  faTrash,
+  faTrash,faCartArrowDown,
+  faSearchLocation,
 } from '@fortawesome/free-solid-svg-icons'
 
 // add icons you need
@@ -41,7 +42,7 @@ library.add(
   faCreditCard, faAddressBook, faEnvelopeOpen,
   faArrowLeft, faCarSide, faFileAlt,
   faShieldCat, faMinus, faPlus,
-  faTrash
+  faTrash, faCartArrowDown,faSearchLocation
 )
 const app = createApp(App)
 
