@@ -57,6 +57,7 @@ import CanceledOrders from "@/views/CanceledOrReturnedOrdersViews.vue";
 import NotFound from "@/views/NotFoundView.vue";
 import ProductDetails from "@/views/ProductDetailsView.vue";
 import CartView from "@/views/CartView.vue";
+import CheckoutView from "@/views/CheckoutView.vue";
 
 // AuthLayouts children
 import Signup from "@/views/SignupView.vue";
@@ -119,6 +120,12 @@ const routes = [
         name: 'cart',
         component: CartView,
         meta: { title: 'Cart' }
+      },
+      {
+        path: '/checkout',
+        name: 'checkout',
+        component: CheckoutView,
+        meta: {title: 'checkout'}
       },
       {
         path: '/product/:id',
