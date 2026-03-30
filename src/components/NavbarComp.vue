@@ -1,5 +1,9 @@
 <script setup>
+import { defineProps } from 'vue';
 
+const props = defineProps({
+  quantity: String
+})
 </script>
 
 <template>
@@ -58,7 +62,7 @@
               <div class="position-relative">
                   <!-- <i class="fa fa-cart-plus"></i> -->
                     <font-awesome-icon :icon="['fa','cart-plus']" />
-                  <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">5</span></span>
+                  <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">{{ quantity }}</span></span>
               </div>
               <span class="ms-3">Cart</span>
           </RouterLink>
