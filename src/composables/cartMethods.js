@@ -94,3 +94,8 @@ export function totalPriceOfItems(productCart) {
     maximumFractionDigits: 2
   });
 }
+
+export function getTotalItemCount (upTodateCart){
+    const total = upTodateCart.reduce((initial, product) => initial + product.quantity, 0);
+    return total;
+}
