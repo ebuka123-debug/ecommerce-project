@@ -3,7 +3,7 @@ import { ref, watch } from 'vue';
 import EmptyCartComp from '@/components/EmptyCartComp.vue';
 import CartCardDetailComp from '@/components/CartCardDetailComp.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { plusOnclickevent, totalPriceOfItems} from '@/composables/cartMethods';
+import { plusOnclickevent, totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
 
 //Cart data
 const cart = ref(JSON.parse(localStorage.getItem("cart")));
@@ -19,7 +19,7 @@ watch(showModal, (val) => {
   document.body.style.overflow = val ? 'hidden' : ''
 })
 
-const selectedProduct = ref(null)
+const selectedProduct = ref(null);
 
 const handleRemoveClicked = (product) => {
   selectedProduct.value = product
@@ -80,7 +80,7 @@ console.log(cart.value);
 
     <div class="">
       <span class="p-3 fs-14 total-cart-item-sm">
-        You have {{ cart.length }} items in your cart
+        You have {{ getTotalItemCount(cart)}} items in your cart
       </span>
     </div>
 
@@ -93,7 +93,7 @@ console.log(cart.value);
       <div class="col-xl-9 mt-2 cart-item-section-column">
         <div class="row">
           <div id="product-number-in-cart" class="col border-2 border-bottom mt-2">
-            You have {{ cart.length }} item(s) in cart
+            You have {{ getTotalItemCount(cart)}} item(s) in cart
             <!-- {{ cart }} -->
           </div>
         </div>
@@ -115,7 +115,7 @@ console.log(cart.value);
             <div class="d-flex mb-2 justify-content-between">
               <div class="d-flex align-items-center">
                   <span class="fs-14 cart-summary">
-                      Items total ({{ cart.length }})
+                      Items total ({{ getTotalItemCount(cart) }})
                   </span>
               </div>
               <div>
@@ -139,9 +139,9 @@ console.log(cart.value);
 
             <div class="row d-flex bg-sm-none fixed-at-bottom justify-content-center bg-white mt-3 pt-3 pb-3 pt-md-4 pb-md-4 pt-xl-0 pb-xl-0">
               <div class="col-12 d-flex justify-content-center">
-                  <a href="../html/checkout.html" class="btn btn-red checkout-btn w-100 w-sm-75 fs-14 shadow-sm">
+                  <RouterLink to="checkout" class="btn btn-red checkout-btn w-100 w-sm-75 fs-14 shadow-sm">
                       Checkout (${{ totalPriceOfItems(cart) }})
-                  </a>
+                  </RouterLink>
               </div>
             </div>
 
