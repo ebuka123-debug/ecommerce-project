@@ -4,6 +4,9 @@ import NavbarSmallScreen from '@/components/NavbarSmallScreen.vue';
 import NavAndTabs from '@/components/NavAndTabsComp.vue'
 import Navbar from '@/components/NavbarComp.vue';
 import Footer from '@/components/FooterComp.vue';
+import { getTotalItemCount } from '@/composables/cartMethods';
+//Cart data
+const cart = ref(JSON.parse(localStorage.getItem("cart")));
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // import Product from '@/components/ProductComp.vue';
@@ -21,7 +24,7 @@ const result = ref("welcome");
    <NavbarSmallScreen />
 
 
-  <navbar />
+  <navbar :quantity="getTotalItemCount(cart)"/>
 
   <NavAndTabs />
 
