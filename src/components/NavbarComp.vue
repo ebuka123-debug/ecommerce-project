@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 
 const props = defineProps({
-  quantity: String
+  quantity: Number
 })
 </script>
 

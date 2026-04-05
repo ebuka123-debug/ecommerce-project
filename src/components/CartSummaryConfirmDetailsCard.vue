@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 
 const props = defineProps({
-  quantity: String,
+  quantity: Number,
   totalPrice: String
 
 })
@@ -56,7 +56,7 @@ const props = defineProps({
         </div>
       </div>
 
-      <a href="../html/checkout.html" class="btn btn-red w-100 mt-3 fs-14 shadow-sm">
+      <a href="../html/checkout.html" class="btn btn-red w-100 mt-3 fs-14 d-none d-md-block shadow-sm">
           Confirm order
       </a>
       <!-- <div class="card-body"> -->

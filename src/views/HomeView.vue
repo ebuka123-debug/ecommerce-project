@@ -32,7 +32,7 @@ onMounted(() => {
                   <input class="form-control rounded-0" type="text" placeholder="Search product, brands and categories" aria-label=".form-control-lg example">
               </div>
               <button class="input-group-text rounded-0 rounded-end mt-2 btn border d-flex justify-content-center align-items-center">
-                  <i class="fa fa-search text-ash"></i>
+                  <font-awesome-icon :icon="['fa','search']" class="text-ash"/>
               </button>
 
           </form>
