@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+import {defineEmits} from 'vue';
+
+// Emit an event to the parent when the select pick station link is clicked
+const emit = defineEmits(["Select-pickup-station"]);
+</script>
 <template>
   <form action="">
     <div class="row mt-2 mb-3 ps-xl-3 pe-xl-3">
@@ -66,7 +71,7 @@
                             Pickup station
                         </div>
                         <div class="col text-end fs-14">
-                            <span href="" id="select-pickup-station" class="text-primary">Select pickup station  ></span>
+                            <span href="" id="select-pickup-station" class="text-primary" @click="emit('Select-pickup-station')">Select pickup station  ></span>
                         </div>
                     </div>
                 </div>
