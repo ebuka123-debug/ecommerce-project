@@ -56,6 +56,12 @@ const props = defineProps({
                           Orders
                       </RouterLink>
                   </li>
+                   <li>
+                      <RouterLink to="/admin" class="dropdown-item">
+                          <font-awesome-icon :icon="['fa','heart']" class="ms-1 me-2"/>
+                          Admin Dashboard
+                      </RouterLink>
+                  </li>
               </ul>
           </div>
           <RouterLink to="/cart" class="text-white d-flex">
