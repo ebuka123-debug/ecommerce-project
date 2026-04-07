@@ -1,6 +1,8 @@
 // Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+// Bootstrap icons
+import 'bootstrap-icons/font/bootstrap-icons.css'
 // Bootstrap JS (optional but recommended)
 import 'bootstrap'
 import './assets/main.css'
