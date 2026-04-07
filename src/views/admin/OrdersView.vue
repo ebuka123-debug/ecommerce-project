@@ -1,5 +1,24 @@
 <script setup>
 import OrderManagementTable from '@/components/adminComponents/OrderManagementTable.vue';
+import { ref } from 'vue';
+
+const orders = [
+  {
+    orderId: "ORD-001",
+    customer: "John Doe",
+    date: "Jan 5, 2026",
+    items: "2 items",
+    totalPrice: "2,849",
+    payment: "Paid",
+    status: "Delivered"
+  },
+  
+
+//   Order ID	Customer	Date	Items	Total	Payment	Status	Actions
+// #				$
+// Paid
+// Delivered
+]
 </script>
 
 <template>
@@ -14,7 +33,7 @@ import OrderManagementTable from '@/components/adminComponents/OrderManagementTa
           <button class="btn btn-sm btn-outline-secondary">Shipped</button>
           <button class="btn btn-sm btn-outline-secondary">Delivered</button>
         </div>
-        <OrderManagementTable />
+        <OrderManagementTable :orders="orders"/>
       </div>
     </div>
 </template>
