@@ -5,19 +5,21 @@ const props = defineProps({
   orders: Array
 })
 
-const statusColor = (status) => {
-  const statusMap = {
-    available: { bgColor: "bg-success", textColor: "text-white", text: "Active" },
+// const statusColor = (status) => {
+//   const statusMap = {
+//     available: { bgColor: "bg-success", textColor: "text-white", text: "Active" },
 
-    slightlyAvailable: { bgColor: "bg-warning", textColor: "text-dark", text: "Low stock" },
+//     slightlyAvailable: { bgColor: "bg-warning", textColor: "text-dark", text: "Low stock" },
 
-    unavailable: { bgColor: "bg-danger", textColor: "text-white", text: "Unavailable" },
+//     unavailable: { bgColor: "bg-danger", textColor: "text-white", text: "Unavailable" },
 
 
-  };
+//   };
 
-  return statusMap[status] ?? { bgColor: "bg-secondary", textColor: "text-white" };
-};
+//   return statusMap[status] ?? { bgColor: "bg-secondary", textColor: "text-white" };
+// };
+
+// 
 </script>
 
 <template>
@@ -36,12 +38,12 @@ const statusColor = (status) => {
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td>#ORD-001</td>
-                  <td>John Doe</td>
-                  <td>Jan 5, 2026</td>
-                  <td>2 items</td>
-                  <td>$2,849</td>
+              <tr v-for="(value,data) in orders" :key="value">
+                  <td>#{{ value.orderId }}</td>
+                  <td>{{ value.customer }}</td>
+                  <td>{{ value.date }}</td>
+                  <td>{{ value.items }}</td>
+                  <td>${{ value.totalPrice }}</td>
                   <td><span class="badge bg-success">Paid</span></td>
                   <td><span class="badge-status bg-success text-white">Delivered</span></td>
                   <td>
