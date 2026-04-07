@@ -44,6 +44,7 @@ import { createRouter, createWebHistory } from "vue-router";
 // Layouts
 import AuthLayouts from "@/layouts/AuthLayouts.vue";
 import MainLayouts from "@/layouts/MainLayouts.vue";
+import AdminLayouts from "@/layouts/AdminLayouts.vue";
 
 // MainLayouts children
 import Home from "@/views/HomeView.vue";
@@ -62,6 +63,9 @@ import CheckoutView from "@/views/CheckoutView.vue";
 // AuthLayouts children
 import Signup from "@/views/SignupView.vue";
 import Signin from "@/views/SigninView.vue";
+
+//AdminLayouts children
+import AdminDashboard from "@/views/admin/DashboardView.vue";
 // import { meta } from "@eslint/js";
 const routes = [
   {
@@ -157,6 +161,18 @@ const routes = [
       },
     ]
   },
+
+  {
+    path: '/admin',
+    component: AdminLayouts,
+    children: [
+      {
+        path: '',
+        component: AdminDashboard,
+        meta: {title: 'Dashboard'}
+      }
+    ]
+  }
 
 
 ]
