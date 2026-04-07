@@ -66,6 +66,10 @@ import Signin from "@/views/SigninView.vue";
 
 //AdminLayouts children
 import AdminDashboard from "@/views/admin/DashboardView.vue";
+import AdminProductsView from "@/views/admin/ProductsView.vue";
+// import AdminOrdersView from "@/views/OrdersView.vue";
+import AdminOrdersView from "@/views/admin/OrdersView.vue";
+import { meta } from "@eslint/js";
 // import { meta } from "@eslint/js";
 const routes = [
   {
@@ -170,6 +174,18 @@ const routes = [
         path: '',
         component: AdminDashboard,
         meta: {title: 'Dashboard'}
+      },
+      {
+        path: '/admin/products',
+        name: 'Products',
+        component: AdminProductsView,
+        meta: {title: 'Products'}
+      },
+      {
+        path: '/admin/orders',
+        name: 'Order management',
+        component: AdminOrdersView,
+        meta: {title: 'Order management'}
       }
     ]
   }

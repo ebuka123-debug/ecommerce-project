@@ -1,8 +1,16 @@
 <script setup>
 import { defineProps } from 'vue';
+import { useRoute } from 'vue-router';
 defineProps({
   isOpen: Boolean
-})
+});
+
+//Checks if the the route path is the current path (The page the user is in is equivalent to the route path)
+const isActiveRoute = (routePath) => {
+  const route = useRoute();
+
+  return route.path === routePath
+}
 </script>
 <template>
   <div class="sidebar" :class="{ show: isOpen }" id="sidebar">
@@ -11,33 +19,33 @@ defineProps({
         <small class="text-white-50">Electronics Store</small>
     </div>
     <div class="sidebar-menu">
-        <RouterLink to="/admin" class="active">
+        <RouterLink to="/admin" :class="isActiveRoute('/admin')? 'active':''" >
             <i class="bi bi-speedometer2"></i> Dashboard
         </RouterLink>
-        <a href="../admin/products.html">
+        <RouterLink to="/admin/products" :class="isActiveRoute('/admin/products')? 'active':''">
             <i class="bi bi-box-seam"></i> Products
-        </a>
-        <a href="../admin/orders.html">
+        </RouterLink>
+        <RouterLink to="/admin/orders" :class="isActiveRoute('/admin/orders')? 'active':''">
             <i class="bi bi-cart-check"></i> Orders
-        </a>
-        <a href="../admin/customers.html">
+        </RouterLink>
+        <RouterLink to="/admin/customers" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-people"></i> Customers
-        </a>
-        <a href="../admin/categories.html">
+        </RouterLink>
+        <RouterLink to="/admin/categories" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-tags"></i> Categories
-        </a>
-        <a href="../admin/inventory.html">
+        </RouterLink>
+        <RouterLink to="/admin/inventory" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-box2"></i> Inventory
-        </a>
-        <a href="../admin/analytics.html">
+        </RouterLink>
+        <RouterLink to="/admin/analytics" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-graph-up"></i> Analytics
-        </a>
-        <a href="../admin/reviews.html">
+        </RouterLink>
+        <RouterLink to="/admin/reviews" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-star"></i> Reviews
-        </a>
-        <a href="../admin/settings.html">
+        </RouterLink>
+        <RouterLink to="/admin/settings" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-gear"></i> Settings
-        </a>
+        </RouterLink>
     </div>
   </div>
 </template>
