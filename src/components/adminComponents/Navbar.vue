@@ -1,11 +1,12 @@
 <script setup>
-
+import { defineEmits } from 'vue';
+const emit = defineEmits(['toggle-sidebar'])
 </script>
 <template>
     <nav class="top-navbar">
       <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
-              <button class="btn btn-link mobile-toggle"  onclick="toggleSidebar()">
+              <button class="btn btn-link mobile-toggle"  @click="emit('toggle-sidebar')">
                   <i class="bi bi-list fs-4"></i>
               </button>
               <h5 class="mb-0 ms-2">Dashboard</h5>

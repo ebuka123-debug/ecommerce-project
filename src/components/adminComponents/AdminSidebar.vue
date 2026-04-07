@@ -1,13 +1,19 @@
+<script setup>
+import { defineProps } from 'vue';
+defineProps({
+  isOpen: Boolean
+})
+</script>
 <template>
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar" :class="{ show: isOpen }" id="sidebar">
     <div class="sidebar-header">
         <h4 class="mb-0"><i class="bi bi-lightning-charge-fill"></i> Specs Admin</h4>
         <small class="text-white-50">Electronics Store</small>
     </div>
     <div class="sidebar-menu">
-        <a href="#dashboard" class="active">
+        <RouterLink to="/admin" class="active">
             <i class="bi bi-speedometer2"></i> Dashboard
-        </a>
+        </RouterLink>
         <a href="../admin/products.html">
             <i class="bi bi-box-seam"></i> Products
         </a>
