@@ -9,10 +9,46 @@ const orders = [
     date: "Jan 5, 2026",
     items: "2 items",
     totalPrice: "2,849",
-    payment: "Paid",
-    status: "Delivered"
+    payment: "paid",
+    status: "delivered"
   },
-  
+  {
+    orderId: "ORD-002",
+    customer: "John",
+    date: "Jan 5, 2026",
+    items: "10 items",
+    totalPrice: "10,849",
+    payment: "paid",
+    status: "pending"
+  },
+  {
+    orderId: "ORD-003",
+    customer: "Michael",
+    date: "Jan 5, 2026",
+    items: "23 items",
+    totalPrice: "10,050",
+    payment: "pending",
+    status: "pending"
+  },
+  {
+    orderId: "ORD-004",
+    customer: "Abobo Emeka",
+    date: "Jan 5, 2026",
+    items: "123 items",
+    totalPrice: "100,050",
+    payment: "paid",
+    status: "processing"
+  },
+  {
+    orderId: "ORD-005",
+    customer: "Edoziem",
+    date: "Jan 5, 2026",
+    items: "123 items",
+    totalPrice: "100,050",
+    payment: "paid",
+    status: "shipped"
+  },
+
 
 //   Order ID	Customer	Date	Items	Total	Payment	Status	Actions
 // #				$
