@@ -5,21 +5,32 @@ const props = defineProps({
   orders: Array
 })
 
-// const statusColor = (status) => {
-//   const statusMap = {
-//     available: { bgColor: "bg-success", textColor: "text-white", text: "Active" },
+const statusColor = (status) => {
+  const statusMap = {
+    delivered: { bgColor: "bg-success", textColor: "text-white", text: "Delivered" },
 
-//     slightlyAvailable: { bgColor: "bg-warning", textColor: "text-dark", text: "Low stock" },
+    pending: { bgColor: "bg-warning", textColor: "text-dark", text: "Pending" },
+    processing: { bgColor: "bg-primary", textColor: "text-white", text: "Processing" },
+    shipped: { bgColor: "bg-info", textColor: "text-white", text: "Shipped" },
 
-//     unavailable: { bgColor: "bg-danger", textColor: "text-white", text: "Unavailable" },
 
 
-//   };
+  };
 
-//   return statusMap[status] ?? { bgColor: "bg-secondary", textColor: "text-white" };
-// };
+  return statusMap[status] ?? { bgColor: "bg-secondary", textColor: "text-white" };
+};
 
-// 
+const paymentColor = (paymentStatus) => {
+  const paymentMap = {
+    paid: { bgColor: "bg-success", textColor: "text-white", text: "Paid" },
+    pending: { bgColor: "bg-warning", textColor: "text-dark", text: "Pending" },
+
+  }
+
+  return paymentMap[paymentStatus]?? { bgColor: "bg-secondary", textColor: "text-white" };
+}
+
+//
 </script>
 
 <template>
@@ -44,8 +55,8 @@ const props = defineProps({
                   <td>{{ value.date }}</td>
                   <td>{{ value.items }}</td>
                   <td>${{ value.totalPrice }}</td>
-                  <td><span class="badge bg-success">Paid</span></td>
-                  <td><span class="badge-status bg-success text-white">Delivered</span></td>
+                  <td><span :class="[paymentColor(value.payment).bgColor, paymentColor(value.payment).textColor]" class="badge">{{ paymentColor(value.payment).text }}</span></td>
+                  <td><span :class="[statusColor(value.status).bgColor, statusColor(value.status).textColor]" class="badge-status">{{ statusColor(value.status).text }}</span></td>
                   <td>
                       <button class="btn btn-sm btn-outline-primary">View</button>
                   </td>
