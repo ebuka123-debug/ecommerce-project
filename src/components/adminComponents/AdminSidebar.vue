@@ -31,7 +31,7 @@ const isActiveRoute = (routePath) => {
         <RouterLink to="/admin/customers" :class="isActiveRoute('/admin/customers')? 'active':''">
             <i class="bi bi-people"></i> Customers
         </RouterLink>
-        <RouterLink to="/admin/categories" :class="isActiveRoute('/')? 'active':''">
+        <RouterLink to="/admin/categories" :class="isActiveRoute('/admin/categories')? 'active':''">
             <i class="bi bi-tags"></i> Categories
         </RouterLink>
         <RouterLink to="/admin/inventory" :class="isActiveRoute('/admin/inventory')? 'active':''">

@@ -71,8 +71,8 @@ import AdminOrdersView from "@/views/admin/OrdersView.vue";
 import AdminCustomersView from "@/views/admin/CustomersView.vue";
 import AdminInventoryView from "@/views/admin/InventoryView.vue";
 import AdminAnalyticsView from "@/views/admin/AnalyticsView.vue";
-// import AdminCustomersView from "@/views/admin/CustomersView.vue";
 import AdminCustomersReviewView from "@/views/admin/ReviewsView.vue";
+import AdminCategoriesView from "@/views/admin/CategoriesView.vue";
 import { meta } from "@eslint/js";
 // import { meta } from "@eslint/js";
 const routes = [
@@ -214,6 +214,12 @@ const routes = [
         name: 'Reviews',
         component: AdminCustomersReviewView,
         meta: {title: 'Customer Reviews'}
+      },
+      {
+        path: '/admin/categories',
+        name: 'Categories',
+        component: AdminCategoriesView,
+        meta: {title: 'Product Categories'}
       }
     ]
   }
