@@ -67,8 +67,12 @@ import Signin from "@/views/SigninView.vue";
 //AdminLayouts children
 import AdminDashboard from "@/views/admin/DashboardView.vue";
 import AdminProductsView from "@/views/admin/ProductsView.vue";
-// import AdminOrdersView from "@/views/OrdersView.vue";
 import AdminOrdersView from "@/views/admin/OrdersView.vue";
+import AdminCustomersView from "@/views/admin/CustomersView.vue";
+import AdminInventoryView from "@/views/admin/InventoryView.vue";
+import AdminAnalyticsView from "@/views/admin/AnalyticsView.vue";
+// import AdminCustomersView from "@/views/admin/CustomersView.vue";
+import AdminCustomersReviewView from "@/views/admin/ReviewsView.vue";
 import { meta } from "@eslint/js";
 // import { meta } from "@eslint/js";
 const routes = [
@@ -183,9 +187,33 @@ const routes = [
       },
       {
         path: '/admin/orders',
-        name: 'Order management',
+        name: 'Order Management',
         component: AdminOrdersView,
-        meta: {title: 'Order management'}
+        meta: {title: 'Order Management'}
+      },
+      {
+        path: '/admin/customers',
+        name: 'Customer Management',
+        component: AdminCustomersView,
+        meta: {title: 'Customer Management'}
+      },
+      {
+        path: '/admin/inventory',
+        name: 'Inventory Management',
+        component: AdminInventoryView,
+        meta: {title: 'Inventory Management'}
+      },
+      {
+        path: '/admin/analytics',
+        name: 'Analytics',
+        component: AdminAnalyticsView,
+        meta: {title: 'Analytics'}
+      },
+      {
+        path: '/admin/reviews',
+        name: 'Reviews',
+        component: AdminCustomersReviewView,
+        meta: {title: 'Customer Reviews'}
       }
     ]
   }

@@ -28,19 +28,19 @@ const isActiveRoute = (routePath) => {
         <RouterLink to="/admin/orders" :class="isActiveRoute('/admin/orders')? 'active':''">
             <i class="bi bi-cart-check"></i> Orders
         </RouterLink>
-        <RouterLink to="/admin/customers" :class="isActiveRoute('/')? 'active':''">
+        <RouterLink to="/admin/customers" :class="isActiveRoute('/admin/customers')? 'active':''">
             <i class="bi bi-people"></i> Customers
         </RouterLink>
         <RouterLink to="/admin/categories" :class="isActiveRoute('/')? 'active':''">
             <i class="bi bi-tags"></i> Categories
         </RouterLink>
-        <RouterLink to="/admin/inventory" :class="isActiveRoute('/')? 'active':''">
+        <RouterLink to="/admin/inventory" :class="isActiveRoute('/admin/inventory')? 'active':''">
             <i class="bi bi-box2"></i> Inventory
         </RouterLink>
-        <RouterLink to="/admin/analytics" :class="isActiveRoute('/')? 'active':''">
+        <RouterLink to="/admin/analytics" :class="isActiveRoute('/admin/analytics')? 'active':''">
             <i class="bi bi-graph-up"></i> Analytics
         </RouterLink>
-        <RouterLink to="/admin/reviews" :class="isActiveRoute('/')? 'active':''">
+        <RouterLink to="/admin/reviews" :class="isActiveRoute('/admin/reviews')? 'active':''">
             <i class="bi bi-star"></i> Reviews
         </RouterLink>
         <RouterLink to="/admin/settings" :class="isActiveRoute('/')? 'active':''">
