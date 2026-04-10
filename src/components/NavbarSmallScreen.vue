@@ -1,7 +1,11 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import Offcanvas from './OffcanvasComp.vue';
+import { defineProps } from 'vue';
 
+const props = defineProps({
+  quantity: Number
+})
 
 </script>
 
@@ -26,7 +30,7 @@ import Offcanvas from './OffcanvasComp.vue';
             <div class="position-relative mt-1">
                 <!-- <i class="fa fa-cart-plus fs-18 text-white"></i> -->
                  <font-awesome-icon :icon="['fa','cart-plus']" class="fs-18 text-white" />
-                <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">5</span></span>
+                <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">{{ quantity }}</span></span>
             </div>
         </RouterLink>
       </div>

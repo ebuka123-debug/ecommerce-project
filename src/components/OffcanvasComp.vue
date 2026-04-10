@@ -69,6 +69,12 @@ watch(route, () => {
                  <font-awesome-icon :icon="['fa','laptop']" class="text-red fs-14" />
                 <span class="ms-2 fs-14">Laptops</span>
             </RouterLink>
+            <RouterLink to="/admin"  class="offcanvas-content d-flex align-items-center mb-2 rounded d-flex pt-2 pb-2 ps-2">
+                <!-- <div class="icon-hot"></div> -->
+                <!-- <i class="fa fa-laptop text-red fs-14"></i> -->
+                 <font-awesome-icon :icon="['fa','user-tie']" class="text-red fs-14" />
+                <span class="ms-2 fs-14">Admin</span>
+            </RouterLink>
         </div>
   </div>
 </template>

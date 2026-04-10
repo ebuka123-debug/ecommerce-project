@@ -21,7 +21,7 @@ const result = ref("welcome");
 
 <template>
 
-   <NavbarSmallScreen />
+   <NavbarSmallScreen :quantity="getTotalItemCount(cart)"/>
 
 
   <navbar :quantity="getTotalItemCount(cart)"/>
