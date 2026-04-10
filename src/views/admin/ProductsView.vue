@@ -2,7 +2,8 @@
 import ProductManagementTable from '@/components/adminComponents/ProductManagementTable.vue';
 import { ref } from 'vue';
 
-const products = [
+const products = ref(
+  [
   {
     productImage: "/src/assets/images/macbook.jpg",
     productName: "MacBook Pro 16",
@@ -27,9 +28,10 @@ const products = [
     stock: "0",
     status: "unavailable"
   },
-  
+
 
 ]
+)
 </script>
 <template>
   <!-- Products Section -->
