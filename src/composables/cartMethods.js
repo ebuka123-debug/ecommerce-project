@@ -96,7 +96,7 @@ export function totalPriceOfItems(productCart) {
 }
 
 export function getTotalItemCount(upTodateCart) {
-    if (!upTodateCart || !upTodateCart.value) return 0;
+    if (!upTodateCart || upTodateCart.value) return 0;
     const total = upTodateCart.reduce((initial, product) => initial + product.quantity, 0);
     return total;
 }
