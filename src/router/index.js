@@ -59,6 +59,8 @@ import NotFound from "@/views/NotFoundView.vue";
 import ProductDetails from "@/views/ProductDetailsView.vue";
 import CartView from "@/views/CartView.vue";
 import CheckoutView from "@/views/CheckoutView.vue";
+import AccountManagementView from "@/views/AccountManagementView.vue";
+import ProfileSecurityView from "@/views/ProfileSecurityView.vue";
 
 // AuthLayouts children
 import Signup from "@/views/SignupView.vue";
@@ -122,7 +124,7 @@ const routes = [
         meta: {title: 'Newsletter'}
       },
       {
-        path: '/canceledOrders',
+        path: '/orders/canceledOrDeliveredOrders',
         name: 'canceledOrders',
         component: CanceledOrders,
         meta: {title: 'CanceledOrders'}
@@ -141,8 +143,21 @@ const routes = [
       },
       {
         path: '/product/:id',
+        name: 'Product',
         component: ProductDetails,
         meta: {title: 'Product'}
+      },
+      {
+        path: '/profile',
+        name: 'Profile',
+        component: AccountManagementView,
+        meta: {title: 'Profile'}
+      },
+      {
+        path: '/profile/security',
+        name: 'Security',
+        component: ProfileSecurityView,
+        meta: {title: 'Security'}
       },
       {
         path: '/:catchAll(.*)',
@@ -220,7 +235,9 @@ const routes = [
         name: 'Categories',
         component: AdminCategoriesView,
         meta: {title: 'Product Categories'}
-      }
+      },
+      
+
     ]
   }
 
