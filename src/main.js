@@ -35,6 +35,7 @@ import {
   faSearch,
   faCalendarAlt,
   faPaperPlane,
+  faUserTie,
 } from '@fortawesome/free-solid-svg-icons'
 
 // add icons you need
@@ -48,7 +49,8 @@ library.add(
   faArrowLeft, faCarSide, faFileAlt,
   faShieldCat, faMinus, faPlus,
   faTrash, faCartArrowDown, faSearchLocation,
-  faSearch, faCalendarAlt, faPaperPlane
+  faSearch, faCalendarAlt, faPaperPlane,
+  faUserTie
 )
 const app = createApp(App)
 
