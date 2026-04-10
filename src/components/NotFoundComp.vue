@@ -1,5 +1,10 @@
 <script setup>
+import { defineProps } from 'vue';
 
+const props = defineProps({
+  dividerColor: String,
+  btnColor: String
+})
 </script>
 
 <template>
@@ -7,7 +12,7 @@
       <div class="row mb-3">
         <div class="col  text-center">
           <span class="text-404">404</span>
-          <div class="divider"></div>
+          <div :class="dividerColor" class="divider"></div>
         </div>
       </div>
       <div class="row mb-1">
@@ -22,7 +27,7 @@
       </div>
       <div class="row">
         <div class="col text-center">
-          <RouterLink to="/" class="btn btn-red btn-sm">
+          <RouterLink to="/" :class="btnColor" class="btn  btn-sm">
               continue shopping
           </RouterLink>
         </div>
