@@ -14,10 +14,13 @@ import { RouterLink } from 'vue-router';
 
         <form>
             <div class="field">
-                <label for="fullname">Full name</label>
-                <input type="text" id="fullname" placeholder="John Doe" autocomplete="name">
+                <label for="fullname">Last name</label>
+                <input type="text" id="lastname" placeholder="John Doe" autocomplete="name">
             </div>
-
+            <div class="field">
+                <label for="fullname">First name</label>
+                <input type="text" id="firstname" placeholder="John Doe" autocomplete="name">
+            </div>
             <div class="field">
                 <label for="phone">Phone number</label>
                 <input type="tel" id="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
