@@ -3,7 +3,7 @@ import NotFoundComponent from '@/components/NotFoundComp.vue';
 </script>
 
 <template>
-  <NotFoundComponent />
+  <NotFoundComponent :btn-color="`btn-red`"/>
 </template>
 <style>
 
