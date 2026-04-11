@@ -66,8 +66,7 @@ const typesOfOrder = [
 
 ]
 
-// checks what order is clicked
-// const active = ref("");
+// checks what order is clicked and set the default order to what order that is clicked
 const OrderClicked = (order) => {
   defaultTypeOfOrder.value = order;
   // active.value = "active";
@@ -98,11 +97,6 @@ const OrderClicked = (order) => {
           >
            {{ value }}
           </button>
-          <!-- <button class="btn btn-sm btn-outline-secondary active">All Orders</button>
-          <button class="btn btn-sm btn-outline-secondary">Pending</button>
-          <button class="btn btn-sm btn-outline-secondary">Processing</button>
-          <button class="btn btn-sm btn-outline-secondary">Shipped</button>
-          <button class="btn btn-sm btn-outline-secondary">Delivered</button> -->
         </div>
         <OrderManagementTable :typeOfOrder="defaultTypeOfOrder.toLocaleLowerCase()" :orders="orders"/>
       </div>
