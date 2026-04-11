@@ -1,20 +1,17 @@
 <script setup>
-import { defineProps } from 'vue';
+// import { defineProps } from 'vue';
 
 const props = defineProps({
-  orders: Array
+  orders: Array,
+  typeOfOrder: String
 })
 
 const statusColor = (status) => {
   const statusMap = {
     delivered: { bgColor: "bg-success", textColor: "text-white", text: "Delivered" },
-
     pending: { bgColor: "bg-warning", textColor: "text-dark", text: "Pending" },
     processing: { bgColor: "bg-primary", textColor: "text-white", text: "Processing" },
     shipped: { bgColor: "bg-info", textColor: "text-white", text: "Shipped" },
-
-
-
   };
 
   return statusMap[status] ?? { bgColor: "bg-secondary", textColor: "text-white" };
@@ -30,6 +27,11 @@ const paymentColor = (paymentStatus) => {
   return paymentMap[paymentStatus]?? { bgColor: "bg-secondary", textColor: "text-white" };
 }
 
+
+// const checkTypeOfOrderProperty = (typeOfOrder,statusOfOrder) => {
+//   return [typeOfOrder !== statusOfOrder && typeOfOrder !== ""? 'd-none': '']
+
+// }
 //
 </script>
 
@@ -49,7 +51,7 @@ const paymentColor = (paymentStatus) => {
               </tr>
           </thead>
           <tbody>
-              <tr v-for="(value,data) in orders" :key="value">
+              <tr v-for="(value,data) in orders" :key="value" v-show="typeOfOrder === '' || typeOfOrder === value.status">
                   <td>#{{ value.orderId }}</td>
                   <td>{{ value.customer }}</td>
                   <td>{{ value.date }}</td>
@@ -61,18 +63,6 @@ const paymentColor = (paymentStatus) => {
                       <button class="btn btn-sm btn-outline-primary">View</button>
                   </td>
               </tr>
-              <!-- <tr>
-                  <td>#ORD-001</td>
-                  <td>John Doe</td>
-                  <td>Jan 5, 2026</td>
-                  <td>2 items</td>
-                  <td>$2,849</td>
-                  <td><span class="badge bg-warning text-dark">Pending</span></td>
-                  <td><span class="badge-status bg-warning text-dark">Pending</span></td>
-                  <td>
-                      <button class="btn btn-sm btn-outline-primary">View</button>
-                  </td>
-              </tr> -->
           </tbody>
       </table>
     </div>
