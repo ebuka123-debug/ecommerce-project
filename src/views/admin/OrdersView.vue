@@ -51,10 +51,27 @@ const orders = [
 
 
 //   Order ID	Customer	Date	Items	Total	Payment	Status	Actions
-// #				$
+// #
 // Paid
 // Delivered
 ]
+
+const defaultTypeOfOrder = ref("");
+const typesOfOrder = [
+  // "All Orders",
+  "Pending",
+  "Processing",
+  "Shipped",
+  "Delivered"
+
+]
+
+// checks what order is clicked
+// const active = ref("");
+const OrderClicked = (order) => {
+  defaultTypeOfOrder.value = order;
+  // active.value = "active";
+}
 </script>
 
 <template>
@@ -63,13 +80,31 @@ const orders = [
       <h4 class="mb-4">Orders Management</h4>
       <div class="table-card p-4">
         <div class="d-flex gap-2 mb-3">
-          <button class="btn btn-sm btn-outline-secondary active">All Orders</button>
+          <button
+            class="btn btn-sm btn-outline-secondary"
+            :class="[defaultTypeOfOrder === ``? `active`: ``]"
+            @click="defaultTypeOfOrder = ``"
+          >
+          All Orders
+          </button>
+          <button
+            v-for="value in typesOfOrder"
+            :key="value"
+            @click="OrderClicked(value)"
+
+            :class="[defaultTypeOfOrder === value? `active`: ``]"
+            class="btn btn-sm btn-outline-secondary"
+
+          >
+           {{ value }}
+          </button>
+          <!-- <button class="btn btn-sm btn-outline-secondary active">All Orders</button>
           <button class="btn btn-sm btn-outline-secondary">Pending</button>
           <button class="btn btn-sm btn-outline-secondary">Processing</button>
           <button class="btn btn-sm btn-outline-secondary">Shipped</button>
-          <button class="btn btn-sm btn-outline-secondary">Delivered</button>
+          <button class="btn btn-sm btn-outline-secondary">Delivered</button> -->
         </div>
-        <OrderManagementTable :orders="orders"/>
+        <OrderManagementTable :typeOfOrder="defaultTypeOfOrder.toLocaleLowerCase()" :orders="orders"/>
       </div>
     </div>
 </template>
