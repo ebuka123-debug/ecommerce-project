@@ -21,6 +21,19 @@ const reviews = ref([
   },
 
 ])
+
+const defaultTypeOfReview = ref("");
+const typesOfReview = [
+  "pending",
+  "approved"
+
+]
+
+// checks what type of review
+//  is clicked and set the default review to what review that is clicked
+const reviewClicked = (review) => {
+  defaultTypeOfReview.value = review;
+}
 </script>
 <template>
   <!-- Reviews Section -->
@@ -28,13 +41,29 @@ const reviews = ref([
     <h4 class="mb-4">Customer Reviews</h4>
     <div class="table-card p-4">
       <div class="d-flex gap-2 mb-3">
-        <button class="btn btn-sm btn-outline-secondary active">All Reviews</button>
-        <button class="btn btn-sm btn-outline-secondary">Pending</button>
-        <button class="btn btn-sm btn-outline-secondary">Approved</button>
+        <button
+          class="btn btn-sm btn-outline-secondary"
+          :class="[defaultTypeOfReview === ``? `active`: ``]"
+          @click="defaultTypeOfReview = ``"
+        >
+          All Reviews
+        </button>
+        <button
+          v-for="review in typesOfReview"
+          :key="review"
+          class="btn btn-sm btn-outline-secondary"
+          @click="reviewClicked(review)"
+          :class="[defaultTypeOfReview === review? `active`: ``]"
+        >
+          {{ review }}
+        </button>
+        <!-- <button class="btn btn-sm btn-outline-secondary">Pending</button>
+        <button class="btn btn-sm btn-outline-secondary">Approved</button> -->
       </div>
       <div class="list-group">
         <CustomerReviewCard
           v-for="(value,index) in reviews"
+          v-show="defaultTypeOfReview === '' || defaultTypeOfReview === value.status"
           :key="value"
           :reviewData="value"
         />
