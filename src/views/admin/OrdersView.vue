@@ -98,7 +98,7 @@ const OrderClicked = (order) => {
            {{ value }}
           </button>
         </div>
-        <OrderManagementTable :typeOfOrder="defaultTypeOfOrder.toLocaleLowerCase()" :orders="orders"/>
+        <OrderManagementTable :typeOfOrder="defaultTypeOfOrder.toLowerCase()" :orders="orders"/>
       </div>
     </div>
 </template>
