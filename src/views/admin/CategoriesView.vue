@@ -33,7 +33,7 @@ const categories = ref(
         v-for="(value,index) in categories"
         :key="value"
         :name="value.name"
-        :productAmount="value.amount"
+        :product-amount="value.amount"
       />
     </div>
   </div>

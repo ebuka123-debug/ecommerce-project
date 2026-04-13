@@ -222,7 +222,7 @@ const a = ref("Top")
                     v-for="(product,data) in topSellingProducts"
                     :key="data"
                     :description="product.product"
-                    :amountSold="product.amountSold"
+                    :amount-sold="product.amountSold"
                     :price="product.price"
                     :image="product.image"
                   />

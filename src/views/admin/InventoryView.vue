@@ -40,14 +40,14 @@ const inventory = ref([
             <InventoryManagementCard
               :title="`Low Stock`"
               :content="`7`"
-              :textColor = "`text-warning`"
+              :text-color = "`text-warning`"
             />
           </div>
           <div class="col-md-4">
             <InventoryManagementCard
               :title="`Out Of Stock`"
               :content="`2`"
-              :textColor = "`text-danger`"
+              :text-color = "`text-danger`"
             />
           </div>
         </div>
