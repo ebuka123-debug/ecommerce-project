@@ -1,10 +1,17 @@
 <script setup>
-// import { defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
+
 
 const props = defineProps({
   orders: Array,
   typeOfOrder: String
 })
+
+const filteredOrders = computed(() =>
+  props.typeOfOrder === ''
+    ? props.orders
+    : props.orders.filter(o => o.status === props.typeOfOrder)
+);
 
 const statusColor = (status) => {
   const statusMap = {
@@ -27,12 +34,6 @@ const paymentColor = (paymentStatus) => {
   return paymentMap[paymentStatus]?? { bgColor: "bg-secondary", textColor: "text-white" };
 }
 
-
-// const checkTypeOfOrderProperty = (typeOfOrder,statusOfOrder) => {
-//   return [typeOfOrder !== statusOfOrder && typeOfOrder !== ""? 'd-none': '']
-
-// }
-//
 </script>
 
 <template>
@@ -51,7 +52,7 @@ const paymentColor = (paymentStatus) => {
               </tr>
           </thead>
           <tbody>
-              <tr v-for="(value,data) in orders" :key="value" v-show="typeOfOrder === '' || typeOfOrder === value.status">
+              <tr v-for="(value,data) in filteredOrders" :key="value" >
                   <td>#{{ value.orderId }}</td>
                   <td>{{ value.customer }}</td>
                   <td>{{ value.date }}</td>
