@@ -1,9 +1,9 @@
 <script setup>
 
 import NavbarSmallScreen from '@/components/NavbarSmallScreen.vue';
-import NavAndTabs from '@/components/NavAndTabsComp.vue'
-import Navbar from '@/components/NavbarComp.vue';
-import Footer from '@/components/FooterComp.vue';
+import NavAndTabs from '@/components/NavAndTabs.vue'
+import Navbar from '@/components/Navbar.vue';
+import Footer from '@/components/Footer.vue';
 import { getTotalItemCount } from '@/composables/cartMethods';
 //Cart data
 const cart = ref(JSON.parse(localStorage.getItem("cart")) || []);

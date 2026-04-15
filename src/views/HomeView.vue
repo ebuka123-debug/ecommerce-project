@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useProducts } from '@/composables/useProducts';
-import Carousel from '@/components/CarouselComp.vue';
+import Carousel from '@/components/Carousel.vue';
 
 const { loading, products, errorStatus,fetchProducts } = useProducts();
 

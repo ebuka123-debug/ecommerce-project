@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
-import EmptyCartComp from '@/components/EmptyCartComp.vue';
-import CartCardDetailComp from '@/components/CartCardDetailComp.vue';
+import EmptyCartComp from '@/components/EmptyCart.vue';
+import CartCardDetailComp from '@/components/CartCardDetail.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { plusOnclickevent, totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
 

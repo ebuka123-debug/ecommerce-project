@@ -1,10 +1,10 @@
 <script setup>
 import { ref, watch } from 'vue';
 import CartSummaryConfirmDetailsCard from '@/components/CartSummaryConfirmDetailsCard.vue';
-import DeliveryFormComp from '@/components/DeliveryFormComp.vue';
+import DeliveryFormComp from '@/components/DeliveryForm.vue';
 
 import { totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
-import PaymentMethodComp from '@/components/PaymentMethodComp.vue';
+import PaymentMethodComp from '@/components/PaymentMethod.vue';
 
 //Cart data
 const cart = ref(JSON.parse(localStorage.getItem("cart")));
