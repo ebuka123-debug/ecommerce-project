@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import { minusOnclickevent, plusOnclickevent} from '@/composables/cartMethods';
 
 // Accept the product object from the parent component

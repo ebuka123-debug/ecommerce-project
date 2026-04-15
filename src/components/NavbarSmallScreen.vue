@@ -1,7 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import Offcanvas from './OffcanvasComp.vue';
-import { defineProps } from 'vue';
 
 const props = defineProps({
   quantity: Number

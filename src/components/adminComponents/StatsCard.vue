@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 
 const props = defineProps({
   statsContent: Object
@@ -23,7 +22,7 @@ const props = defineProps({
                 </div>
                 <div :class="[statsContent.iconBgColor, statsContent.iconColor]" class="stat-icon bg-opacity-10 ">
                     <i :class="[statsContent.icon]"></i>
-                    
+
                 </div>
             </div>
         </div>
