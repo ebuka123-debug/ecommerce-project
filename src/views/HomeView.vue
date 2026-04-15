@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { useProducts } from '@/composables/useProducts';
 import Carousel from '@/components/CarouselComp.vue';
 
-const { loading, products, fetchProducts } = useProducts();
+const { loading, products, errorStatus,fetchProducts } = useProducts();
 
 const saveToStorageOnclickBuyNow = (productId) => {
   const matchedProduct = products.value.find(value => {
@@ -56,21 +56,17 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <!-- <div v-else class="container">
+  <div v-if="errorStatus" class="container">
     <div class="row">
       <div class="col text-center">
-        <span class="fs-4">Please reload the page...</span>
+        <span class="fs-4">Please check your internet connection...</span>
       </div>
     </div>
-  </div> -->
+  </div>
 
     <!-- <Product /> -->
   <div class="container mt-5">
     <div class="row products-section mb-5 mt-5 d-flex">
-        <!-- <ul>
-          <li v-for="(product, index) in products" :key="index">{{ product }}</li>
-        </ul> -->
-
         <div v-for="product in products" :key="product.id" class="col-6 g-2 g-md-3 col-md-4 mb-1 mb-md-3 col-xl-3">
           <div class="card border">
             <div class="card-body">
@@ -87,7 +83,6 @@ onMounted(() => {
                   <font-awesome-icon :icon="['fa','star']" class="text-gold"/>
                   <font-awesome-icon :icon="['fa','star']" class="text-gold"/>
                   <font-awesome-icon :icon="['fa','star']" class="text-ash"/>
-                  <!-- <i class="fa fa-star text-ash"></i> -->
               </p>
               <p class="card-text"><b class="ms-md-3 text-silver">${{ product.price }}</b> <del class="ms-4 text-ash">${{ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }}</del></p>
               <RouterLink v-if="product.id" :to="`/product/${product.id}`" @click="saveToStorageOnclickBuyNow(product.id)" class="btn btn-sm btn-red w-100 add" data-product="${electronicProduct.id}">Buy now</RouterLink>
