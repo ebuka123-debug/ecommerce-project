@@ -1,7 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useProducts } from '@/composables/useProducts';
 import Carousel from '@/components/Carousel.vue';
+import ProductCard from '@/components/ProductCard.vue';
 
 const { loading, products, errorStatus,fetchProducts } = useProducts();
 
@@ -42,13 +43,13 @@ onMounted(() => {
   <!-- This is the carousel -->
   <Carousel />
 
+  <!-- products label -->
   <div class="d-flex mb-4 mt-5 ms-md-5">
         <b class="fs-3 ms-4">Products</b>
       <div id="fullstop" class="rounded rounded-circle mt-3 ms-1"></div>
   </div>
 
-  <!-- Products card section -->
-
+ <!-- Displays the nfetch info -->
   <div v-if="loading" class="container">
     <div class="row">
       <div class="col text-center">
@@ -64,31 +65,20 @@ onMounted(() => {
     </div>
   </div>
 
-    <!-- <Product /> -->
+ <!-- Products card section -->
   <div class="container mt-5">
     <div class="row products-section mb-5 mt-5 d-flex">
-        <div v-for="product in products" :key="product.id" class="col-6 g-2 g-md-3 col-md-4 mb-1 mb-md-3 col-xl-3">
-          <div class="card border">
-            <div class="card-body">
-              <div class="card-img mb-4">
-                  <img :src="product.images[0]" class="img-fluid" alt="">
-              </div>
-              <p class="card-text text-ash product-title product-title-clamp"><b>{{ product.title }}</b></p>
-              <p class="text-silver product-description">
-                  {{ product.description }}
-              </p>
-              <p class="">
-                  <font-awesome-icon :icon="['fa','star']" class="text-gold"/>
-                  <font-awesome-icon :icon="['fa','star']" class="text-gold"/>
-                  <font-awesome-icon :icon="['fa','star']" class="text-gold"/>
-                  <font-awesome-icon :icon="['fa','star']" class="text-gold"/>
-                  <font-awesome-icon :icon="['fa','star']" class="text-ash"/>
-              </p>
-              <p class="card-text"><b class="ms-md-3 text-silver">${{ product.price }}</b> <del class="ms-4 text-ash">${{ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }}</del></p>
-              <RouterLink v-if="product.id" :to="`/product/${product.id}`" @click="saveToStorageOnclickBuyNow(product.id)" class="btn btn-sm btn-red w-100 add" data-product="${electronicProduct.id}">Buy now</RouterLink>
-            </div>
-          </div>
-        </div>
+      <div v-for="product in products" :key="product.id" class="col-6 g-2 g-md-3 col-md-4 mb-1 mb-md-3 col-xl-3">
+        <ProductCard
+          :id="product.id"
+          :image="product.images[0]"
+          :price="product.price"
+          :title="product.title"
+          :description="product.description"
+          :discount-percentage="product.discountPercentage "
+          @save-product-clicked="saveToStorageOnclickBuyNow"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -106,74 +96,8 @@ onMounted(() => {
 
 }
 
-
 .col-5 .input-group{
     width: 15rem;
 }
-
-
-
-
-
-.product-title{
-        overflow: hidden;
-    text-overflow: ellipsis;
-    display:-webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.product-description{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display:-webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.product-title-clamp{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display:-webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-}
-
-
-
-
-
-
-
-
-
-.card{
-    transition: all 0.3s ease-in-out 0s;
-}
-
-.card:hover{
-    border: 0px;
-    transform: scale(1.03);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
-    cursor: pointer;
-}
-
-.card-img{
-    height: 30%;
-    overflow: hidden;
-    /* border: 1px solid black; */
-}
-
-
-.card img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.card{
-    height: 415px;
-}
-
 
 </style>
