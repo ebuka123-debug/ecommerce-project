@@ -3,6 +3,7 @@ import { ref } from "vue";
 export function useProducts() {
   const products = ref([]);   //Products variable
   const loading = ref(false);   //loading variable is set to false at first
+  const errorStatus = ref(false);
   const fetchProducts = async () => {
     try {
       loading.value = true; //Set the loading value to true, this shows that it is still fetching the data of products
@@ -11,13 +12,12 @@ export function useProducts() {
       const data = await res.json();
 
       products.value = data.products;
-      console.log(products.value);
 
       localStorage.setItem("Product-data", JSON.stringify(products.value));
 
     }
     catch (error) {
-      console.log(error);
+      errorStatus.value = true;
     }
     finally {
       loading.value = false;  //After the data is fetched we set the loading back to false
@@ -25,6 +25,6 @@ export function useProducts() {
 
   }
 
-  return {loading,products,fetchProducts}
+  return {loading,products,errorStatus,fetchProducts}
 }
 
