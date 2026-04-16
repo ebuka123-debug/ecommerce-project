@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import NotFoundComponent from '@/components/NotFound.vue';
-import { useCart } from '@/composables/cartMethods';
 import ProductDescription from '@/components/ProductDescription.vue';
 import DeliveryAndReturns from '@/components/DeliveryAndReturns.vue';
 import ProductDetailsCard from '@/components/ProductDetailsCard.vue';
@@ -10,7 +9,6 @@ import Ratings from '@/components/Ratings.vue';
 import CommentsCard from '@/components/CommentsCard.vue';
 import Specification from '@/components/Specification.vue';
 
-const { productExistInCartStatus } = useCart();
 
 //Data of products that are stored in the local storage
 const data = JSON.parse(localStorage.getItem("Product-data"));
