@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="col-md-6 col-xl-4 d-flex flex-column align-items-center align-items-md-start border-end">
+
       <div class="mt-3">
           <span>
               VERIFIED RATINGS (1234)
@@ -116,7 +116,7 @@
           </div>
       </div>
 
-  </div>
+
 </template>
 
 <style scoped>
