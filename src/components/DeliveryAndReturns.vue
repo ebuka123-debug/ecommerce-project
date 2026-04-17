@@ -1,5 +1,53 @@
 <script setup>
+import { ref, computed } from 'vue';
 
+const states = ref([
+  {
+    name: "Anambra",
+    towns: [
+      "Aguluzigbo",
+      "Awka",
+    ],
+
+    selectedStateStatus: true,
+    selectedTown: {
+      status: true,
+      name: "Aguluzigbo"
+    }
+
+  },
+  {
+    name: "Enugu",
+    towns: [
+      "Ozala",
+      "Nsukka",
+
+    ],
+    selectedStateStatus: false,
+    selectedTown: {
+      status: false,
+      name: null
+    }
+  }
+])
+
+// Set initial selected state from selectedStateStatus
+//checks for the state that it's selected status is true
+const selectedState = ref(states.value.find(s => s.selectedStateStatus)?.name);
+
+// Automatically gives you the towns of whatever state is selected
+const filteredTowns = computed(() => {
+  return states.value.find(s => s.name === selectedState.value)?.towns ?? [];
+});
+
+
+// Get the preselected town of the current state
+const selectedTown = ref(states.value.find(s => s.selectedStateStatus)?.selectedTown.name);
+
+// When state changes, reset town to null (triggers "Please select a town")
+function onStateChange() {
+  selectedTown.value = null;
+}
 </script>
 <template>
   <ul class="list-group mb-3">
@@ -26,17 +74,19 @@
     </li>
 
     <li class="list-group-item">
-      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-          <option selected>Anambra</option>
-          <option value="1">Enugu</option>
-          <option value="2">Imo</option>
-          <option value="3">Ebonyi</option>
+
+      <!-- State -->
+      <select class="form-select form-select-lg mb-3" v-model="selectedState" @change="onStateChange">
+        <option v-for="(state, index) in states" :key="index" :value="state.name">
+          {{ state.name }}
+        </option>
       </select>
-      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-          <option selected>Awka</option>
-          <option value="1">Aguluzigno</option>
-          <option value="2">Agulu</option>
-          <option value="3">Onitsha</option>
+      <!-- Towns -->
+      <select class="form-select form-select-lg mb-3" v-model="selectedTown">
+        <option :value="null" disabled>Please select a town</option>
+        <option v-for="(town, index) in filteredTowns" :key="index" :value="town">
+          {{ town }}
+        </option>
       </select>
     </li>
     <li class="list-group-item d-flex jn lh-sm pt-4">
