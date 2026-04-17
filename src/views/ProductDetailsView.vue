@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import NotFoundComponent from '@/components/NotFound.vue';
 import ProductDescription from '@/components/ProductDescription.vue';
@@ -7,7 +7,7 @@ import DeliveryAndReturns from '@/components/DeliveryAndReturns.vue';
 import ProductDetailsCard from '@/components/ProductDetailsCard.vue';
 import Ratings from '@/components/Ratings.vue';
 import CommentsCard from '@/components/CommentsCard.vue';
-import Specification from '@/components/Specification.vue';
+import SpecificationCard from '@/components/SpecificationCard.vue';
 
 
 //Data of products that are stored in the local storage
@@ -47,7 +47,51 @@ const productQuantity = ref(
 );
 
 
+const productSpecs = reactive(
+  {
+    keyFeatures: [
+      "48h nourishing deep moisture care",
+      "DEEP MOISTURE SERUM and cocoa butter & vitamin E",
+      "Provides moisture and smoothes away dullness",
+      "Leaves skin nicely fragranced with a scent of cocoa - after just 1 application.",
+      "With Cocoa Butter"
+    ],
 
+    specifications: [
+      "SKU: NI930ST32OJ5WNAFAMZ",
+      "Weight (kg): 1",
+      "Product Type: Body Lotions",
+      "Shop Type: Specs Mall"
+    ]
+  }
+)
+
+const comments = ref(
+  [
+    {
+      name: "Chukwuebuka",
+      comment: `
+        The smasung A53 is very very fast in terms of network, and also i like that it does'nt hang.
+        i did'nt know you guys could actually deliver the colors that i picked`,
+      date: '17-4-2026'
+    },
+
+    {
+      name: "Chukwuemeka",
+      comment: `
+        The smasung A53 is very very fast in terms of network, and also i like that it does'nt hang.
+        i did'nt know you guys could actually deliver the colors that i picked`,
+      date: '17-4-2026'
+    },
+    {
+      name: "Chukwuedoziem",
+      comment: `
+        The smasung A53 is very very fast in terms of network, and also i like that it does'nt hang.
+        i did'nt know you guys could actually deliver the colors that i picked`,
+      date: '17-4-2026'
+    }
+  ]
+)
 
 </script>
 
@@ -136,7 +180,23 @@ const productQuantity = ref(
                       Specifications
                   </h2>
               </div>
-              <Specification />
+              <!-- <Specification /> -->
+              <div class="row g-0">
+                <div class="col-xl-5 g-0">
+                  <SpecificationCard
+                    :title="`Key features`"
+                    :list="productSpecs.keyFeatures"
+                    :type-of-list="'unordered'"
+                  />
+                </div>
+                <div class="col-xl-5 g-0 ms-md-3">
+                  <SpecificationCard
+                    :title="`Specifications`"
+                    :list="productSpecs.specifications"
+                    :type-of-list="'ordered'"
+                  />
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -168,9 +228,28 @@ const productQuantity = ref(
             </div>
             <div class="row">
               <!-- ratings component -->
-              <Ratings />
+              <div class="col-md-6 col-xl-4 d-flex flex-column align-items-center align-items-md-start border-end">
+                <Ratings />
+              </div>
 
-              <CommentsCard />
+              <div class="col-md-6 col-xl-8 comment-section">
+                <div class="mt-5 mt-md-3 border-bottom pb-1">
+                  <span>
+                    COMMENTS FROM VERIFIED PURCHASES (1234)
+                  </span>
+                </div>
+
+                <CommentsCard
+                  v-for="(user,index) in comments"
+                  :value="user"
+                  :key="index"
+                  :username="user.name"
+                  :comment="user.comment"
+                  :date="user.date"
+                />
+              </div>
+
+
             </div>
         </div>
     </div>
