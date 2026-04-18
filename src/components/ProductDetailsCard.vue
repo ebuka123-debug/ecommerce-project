@@ -1,5 +1,15 @@
 <script setup>
+import { computed } from 'vue';
+const props = defineProps({
+  details: String
+})
 
+const paragraphs = computed(() =>
+  props.details
+    ?.split('\n')
+    .map(p => p.trim())
+    .filter(p => p.length > 0) ?? []
+)
 </script>
 
 <template>
@@ -10,26 +20,15 @@
           </span>
       </div>
       <div class="card-body">
+        
+        <p
+          v-for="(paragraph, index) in paragraphs"
+          :key="index"
+          class="card-text fs-14"
+        >
+          {{ paragraph }}
+        </p>
 
-          <p class="card-text fs-14">Lunch bag is very useful when you need to store your food, drinks, fruits and your baby food packs etc. Also very useful for outing,
-              lunch, picnics and other outing programme. This will give you home away from home.
-          </p>
-          <p class="card-text fs-14">
-              This lunch bag is a wise choice for your babies/ kids lunch or creche needs. It is fully padded and keeps food warm or cool.
-                It contains enough space to carry their water bottle and food bowl.
-          </p>
-          <p class="card-text fs-14">
-              Sannea Lunch bag is very useful when you need to store your food, drinks, fruits and your baby food packs etc. Also very useful for outing, lunch, picnics and other outing programme.
-              This will give you home away from home.
-          </p>
-          <p class="card-text fs-14">
-              This lunch bag is a wise choice for your babies/ kids lunch or creche needs.
-              It is fully padded and keeps food warm or cool. It contains enough space to carry their water bottle and food bowl.
-          </p>
-          <p class="card-text fs-14">
-              Sannea Lunch bag is very useful when you need to store your food, drinks, fruits and your baby food packs etc.
-              Also very useful for outing, lunch, picnics and other outing programme. This will give you home away from home.
-          </p>
       </div>
   </div>
 </template>

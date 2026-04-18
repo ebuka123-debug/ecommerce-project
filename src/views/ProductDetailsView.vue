@@ -93,6 +93,15 @@ const comments = ref(
   ]
 )
 
+const productDetails = ref({
+  details: `i have this text "Lunch bag is very useful when you need to store your food, drinks, fruits and your baby food packs etc. Also very useful for outing, lunch, picnics and other outing programme. This will give you home away from home.
+            This lunch bag is a wise choice for your babies/ kids lunch or creche needs. It is fully padded and keeps food warm or cool. It contains enough space to carry their water bottle and food bowl.
+          Sannea Lunch bag is very useful when you need to store your food, drinks, fruits and your baby food packs etc. Also very useful for outing, lunch, picnics and other outing programme. This will give you home away from home.
+          This lunch bag is a wise choice for your babies/ kids lunch or creche needs. It is fully padded and keeps food warm or cool. It contains enough space to carry their water bottle and food bowl.
+        Sannea Lunch bag is very useful when you need to store your food, drinks, fruits and your baby food packs etc. Also very useful for outing, lunch, picnics and other outing programme. This will give you home away from home."
+i want this text to be displayed in paragraphs, how do i do that`
+})
+
 </script>
 
 <template>
@@ -111,7 +120,7 @@ const comments = ref(
         <!-- row-a content (right) -->
         <!-- Product details -->
 
-        <ProductDetailsCard />
+        <ProductDetailsCard :details="productDetails.details"/>
       </div>
 
       <!-- row-b | col-xl-8 → appears 3rd on small -->
@@ -248,8 +257,6 @@ const comments = ref(
                   :date="user.date"
                 />
               </div>
-
-
             </div>
         </div>
     </div>
@@ -261,11 +268,9 @@ const comments = ref(
 
 <style scoped>
 
-
 .border-slim{
     border: 0.5px solid silver;
 }
-
 
 @media (max-width: 767.98px) {
   .column-a,
