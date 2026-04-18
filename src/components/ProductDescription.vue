@@ -1,8 +1,12 @@
 <script setup>
-import { ref, computed } from 'vue';
+
+import { ref, reactive, onMounted } from 'vue';
 import { useCart, addCart, plusOnclickevent, minusOnclickevent } from '@/composables/cartMethods';
+import { addWishlist, removeWishlist, checkWishlistExist } from '@/composables/wishlistMethods';
+
 
 const { productExistInCartStatus } = useCart();
+const { productExistInWishlist } = checkWishlistExist();
 
 const props = defineProps({
   image: String,
@@ -14,28 +18,50 @@ const props = defineProps({
   productQuantity: Number,
   productId: Number,
   productData: Object,
-})
+});
 
-// Cart data
-const cartData = ref(JSON.parse(localStorage.getItem("cart")));
-
+// localStorage data
+const cartData = ref(JSON.parse(localStorage.getItem('cart')));
+const wishlistData = ref(JSON.parse(localStorage.getItem('wishlist')));
+// console.log('wishlist:', wishlistData.value);
+// console.log('productId:', props.productId, typeof props.productId);
+// console.log('match:', wishlistData.value?.find(item => item.id === props.productId));
 // UI state
 const addToCartDisplayStatus = ref(false);
 const plusOrMinusDisplay = ref(false);
 const isLoading = ref(false);
+const isInWishlist = ref(
+  (() => {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist'));
+    return wishlist !== null && productExistInWishlist(props.productId, wishlist);
+  })()
+);
 
-// Product quantity
-const productQuantity = ref(
-  JSON.parse(localStorage.getItem("cart"))?.find(
-    item => item.id === props.productId
+console.log("this is before click")
+console.log(isInWishlist.value);
+
+
+console.log(localStorage.getItem("wishlist"))
+// Quantity of the product in cart
+const cartQuantity = ref(
+  JSON.parse(localStorage.getItem('cart'))?.find(
+    (item) => item.id === props.productId
   )?.quantity || 1
 );
 
-// Check if product is already in cart and set the right display
-const productInCart = computed(() => {
-  return cartData.value === null || !productExistInCartStatus(props.productId, cartData.value)
-    ? (addToCartDisplayStatus.value = true)
-    : (plusOrMinusDisplay.value = true);
+
+onMounted(() => {
+  // Cart state
+  const inCart =
+    cartData.value !== null &&
+    productExistInCartStatus(props.productId, cartData.value);
+  addToCartDisplayStatus.value = !inCart;
+  plusOrMinusDisplay.value = inCart;
+
+  // Wishlist state
+  isInWishlist.value =
+    wishlistData.value !== null &&
+    productExistInWishlist(props.productId, wishlistData.value);
 });
 
 function buildProductPayload() {
@@ -43,7 +69,7 @@ function buildProductPayload() {
     id: props.productId,
     name: props.title,
     price: props.price,
-    quantity: productQuantity.value,
+    quantity: cartQuantity.value,
     discountPercentage: props.discountPercentage,
     ProductAvailabilityStatus: props.availabilityStatus,
     productFirstPrice: props.originalPrice,
@@ -51,9 +77,17 @@ function buildProductPayload() {
   };
 }
 
+function refreshCartData() {
+  cartData.value = JSON.parse(localStorage.getItem('cart'));
+}
+
+function refreshWishlistData() {
+  wishlistData.value = JSON.parse(localStorage.getItem('wishlist'));
+}
+
 function startTimer() {
-  const productBeingClicked = buildProductPayload();
-  addCart(productBeingClicked);
+  addCart(buildProductPayload());
+  refreshCartData();
   isLoading.value = true;
   addToCartDisplayStatus.value = false;
   setTimeout(() => {
@@ -63,13 +97,29 @@ function startTimer() {
 }
 
 function addItemOnClick() {
-  plusOnclickevent(productQuantity, buildProductPayload(), props.productId);
+  plusOnclickevent(cartQuantity, buildProductPayload(), props.productId);
 }
 
 function removeItemOnClick() {
-  minusOnclickevent(productQuantity, buildProductPayload(), props.productId);
+  minusOnclickevent(cartQuantity, buildProductPayload(), props.productId);
+}
+
+function toggleWishlist() {
+  if (isInWishlist.value) {
+    // console.log("this is after it is click and set to non active")
+    // console.log(isInWishlist.value);
+    removeWishlist(props.productId);
+    isInWishlist.value = false;
+  } else {
+    // console.log("this is after it is click and set to active")
+    // console.log(isInWishlist.value);
+    addWishlist(buildProductPayload());
+    isInWishlist.value = true;
+  }
+  refreshWishlistData();
 }
 </script>
+
 
 <template>
   <div id="product-column" class="row mt-md-4">
@@ -88,9 +138,25 @@ function removeItemOnClick() {
               </div>
             </div>
             <div class="col d-flex justify-content-end">
-              <div id="like" class="d-flex justify-content-center align-items-center rounded-circle">
-                <font-awesome-icon :icon="['fa','heart']" class="text-ash" />
+              <div
+                id="like"
+                :class="{ 'like-bg-color': isInWishlist }"
+                class="d-flex justify-content-center align-items-center rounded-circle"
+                @click="toggleWishlist"
+              >
+
+                <font-awesome-icon
+                  :icon="['fa', 'heart']"
+                  :class="isInWishlist ? 'text-danger' : 'text-ash'"
+                />
               </div>
+              <!-- <div id="like" :class="[likeBgColor]" class="d-flex justify-content-center align-items-center rounded-circle">
+                <font-awesome-icon
+                  :icon="['fa','heart']"
+                  :class="[likeColor]"
+                  @click="addToWishlist()"
+                />
+              </div> -->
             </div>
           </div>
         </div>
@@ -143,24 +209,23 @@ function removeItemOnClick() {
       </div>
 
       <!-- Cart section -->
-      <div v-if="productInCart">
-        <div class="row fixed-at-bottom d-flex justify-content-center bg-white mt-3 pt-3 pb-3 pt-md-4 pb-md-4 pt-xl-0 pb-xl-0">
-          <div class="col-12 d-flex justify-content-center">
-            <div
-              v-if="addToCartDisplayStatus"
-              @click="startTimer"
-              class="btn btn-red w-100 w-sm-75 shadow-sm add-to-cart"
-            >
-              Add to cart
-            </div>
-            <div v-if="isLoading" class="w-100 loader d-flex justify-content-center mb-5">
-              <div class="spinner-border text-danger" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
+      <div class="row fixed-at-bottom d-flex justify-content-center bg-white mt-3 pt-3 pb-3 pt-md-4 pb-md-4 pt-xl-0 pb-xl-0">
+        <div class="col-12 d-flex justify-content-center">
+          <div
+            v-if="addToCartDisplayStatus"
+            class="btn btn-red w-100 w-sm-75 shadow-sm add-to-cart"
+            @click="startTimer"
+          >
+            Add to cart
+          </div>
+          <div v-if="isLoading" class="w-100 loader d-flex justify-content-center mb-5">
+            <div class="spinner-border text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
             </div>
           </div>
         </div>
       </div>
+
 
       <div v-if="plusOrMinusDisplay" class="row">
         <div class="col d-flex align-items-center adding-minusing-section">
@@ -168,13 +233,13 @@ function removeItemOnClick() {
             <font-awesome-icon :icon="['fa','minus']" />
           </div>
           <div class="ms-3 product-amount">
-            <span>{{ productQuantity }}</span>
+            <span>{{ cartQuantity }}</span>
           </div>
           <div @click="addItemOnClick" class="btn btn-sm btn-red ms-3 add-item-btn">
             <font-awesome-icon :icon="['fa','plus']" />
           </div>
           <div class="ms-3 items-quantity-read">
-            <span>{{ productQuantity }} item(s) added</span>
+            <span>{{ cartQuantity }} item(s) added</span>
           </div>
         </div>
       </div>
@@ -236,9 +301,12 @@ function removeItemOnClick() {
 }
 
 #like:hover{
-    background-color: #c51d3667;
+    background-color: #c7344a18;
 }
 
+.like-bg-color{
+  background-color: #c7344a18;
+}
 
 @media (max-width: 1199px){
     #product-column{
@@ -267,3 +335,6 @@ function removeItemOnClick() {
 
 
 </style>
+
+
+
