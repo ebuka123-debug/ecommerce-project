@@ -2,25 +2,17 @@
 import { ref, watch } from 'vue';
 import EmptyCartComp from '@/components/EmptyCart.vue';
 import CartCardDetailComp from '@/components/CartCardDetail.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { plusOnclickevent, totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
+import ConfirmModal from '@/components/ConfirmModal.vue';
+import { totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
 
 //Cart data
 const cart = ref(JSON.parse(localStorage.getItem("cart")));
 
-
-
-
 const showModal = ref(false)
-function removeProduct(productName) {
-  console.log(productName)
-}
-watch(showModal, (val) => {
-  document.body.style.overflow = val ? 'hidden' : ''
-})
 
 const selectedProduct = ref(null);
 
+//when the remove button is clicked
 const handleRemoveClicked = (product) => {
   selectedProduct.value = product
   showModal.value = true
@@ -32,44 +24,17 @@ const confirmRemove = () => {
   showModal.value = false
 }
 
-console.log(cart.value);
 </script>
 
 <template>
-  <div :class="['my-modal', { active: showModal }]" @click.self="showModal = false">
-    <div class="modal-content rounded">
-      <div class="row ms-3 me-3 mt-4">
-          <div class="col-8 col-xl-6">
-              <h2 class="modal-title">
-                  Remove From Cart
-              </h2>
-          </div>
-          <div class="col-4 col-xl-6 d-flex justify-content-end">
-              <button type="button" class="btn-close" @click="showModal = false"></button>
-          </div>
-      </div>
-      <div class="row ms-3 me-3 mt-1">
-          <div class="col">
-              <span class="modal-description">
-                  Do you really want to remove this item from cart
-              </span>
-          </div>
-      </div>
-      <div class="row ms-3 me-3 mt-3 mb-3">
-          <div class="col">
-              <div id="modal-remove-btn" class="btn btn-red d-flex w-100"@click="confirmRemove">
-                  <div class="">
-                      <!-- <i class="fa fa-trash"></i> -->
-                      <Font-awesome-icon :icon="['fa','trash']" />
-                  </div>
-                  <div class="ms-3 ms-md-5  ms-xl-4 w-75 text-md-center">
-                      Remove Item
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-  </div>
+  <ConfirmModal
+    v-model="showModal"
+    title="Remove From Cart"
+    description="Do you really want to remove this item from cart?"
+    confirm-label="Remove Item"
+    :confirm-icon="['fa', 'trash']"
+    @confirm="confirmRemove"
+  />
   <div v-if="cart !== null && cart.length" id="name-display" class="d-flex name-display d-md-none flex-column justify-content-center ">
     <div>
         <b class="p-3">
@@ -185,66 +150,11 @@ console.log(cart.value);
     /* transition: opacity 0.3s ease; */
     overflow-x: hidden;
     overflow-y: auto;
-    animation: fadeIn 0.3s ease;
+    /* animation: fadeIn 0.3s ease; */
 }
-.modal-title {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: #333;
-}
-
-.modal-description{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    color: #666;
-    line-height: 1.6;
-}
-.my-modal.active {
-  display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-.modal-content{
-    width: 40%;
-    height: 30%;
-    background-color: white;
-    animation: slideUp 0.3s ease;
-}
-
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-/* Animate In */
-/* .modal.active .modal-content {
-  transform: scale(1);
-} */
-
 @media (max-width: 1199px){
 
-    .modal-content{
-        width: 96%;
-        height: auto;
-    }
-
-       form {
+    form {
         display: block !important;
     }
 
