@@ -1,256 +1,177 @@
-// import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from '@/views/HomeView.vue'
-
-// const router = createRouter({
-//   history: createWebHistory(import.meta.env.BASE_URL),
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'home',
-//       component: HomeView,
-//     },
-//     {
-//       path: '/about',
-//       name: 'about',
-//       // route level code-splitting
-//       // this generates a separate chunk (About.[hash].js) for this route
-//       // which is lazy-loaded when the route is visited.
-//       component: () => import('@/views/AboutView.vue'),
-//     },
-//   ],
-// })
-
-// export default router
-
-
-// import { createRouter, createWebHistory } from "vue-router";
-
-// import Home from '@/views/HomeView.vue';
-
-// //setting the routes
-// const routes = [
-//   {paths: '/', component: Home}
-// ]
-
-// //creating the router that runs the route
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes
-// })
-
-// export default router
-
 import { createRouter, createWebHistory } from "vue-router";
-// Layouts
-import AuthLayouts from "@/layouts/AuthLayouts.vue";
-import MainLayouts from "@/layouts/MainLayouts.vue";
-import AdminLayouts from "@/layouts/AdminLayouts.vue";
 
-// MainLayouts children
-import Home from "@/views/HomeView.vue";
-import Account from "@/views/AccountView.vue";
-import Wishlist from "@/views/WishlistView.vue";
-import Orders from "@/views/OrdersView.vue";
-import Inbox from "@/views/InboxView.vue";
-import AddressBook from "@/views/AddressBookView.vue";
-import NewsletterPreference from "@/views/NewsletterPreferenceView.vue";
-import CanceledOrders from "@/views/CanceledOrReturnedOrdersViews.vue";
-import NotFound from "@/views/NotFoundView.vue";
-import ProductDetails from "@/views/ProductDetailsView.vue";
-import CartView from "@/views/CartView.vue";
-import CheckoutView from "@/views/CheckoutView.vue";
-import AccountManagementView from "@/views/AccountManagementView.vue";
-import ProfileSecurityView from "@/views/ProfileSecurityView.vue";
-
-// AuthLayouts children
-import Signup from "@/views/SignupView.vue";
-import Signin from "@/views/SigninView.vue";
-
-//AdminLayouts children
-import AdminDashboard from "@/views/admin/DashboardView.vue";
-import AdminProductsView from "@/views/admin/ProductsView.vue";
-import AdminOrdersView from "@/views/admin/OrdersView.vue";
-import AdminCustomersView from "@/views/admin/CustomersView.vue";
-import AdminInventoryView from "@/views/admin/InventoryView.vue";
-import AdminAnalyticsView from "@/views/admin/AnalyticsView.vue";
-import AdminCustomersReviewView from "@/views/admin/ReviewsView.vue";
-import AdminCategoriesView from "@/views/admin/CategoriesView.vue";
 const routes = [
   {
     path: '/',
-    component: MainLayouts,
+    component: () => import('@/layouts/MainLayouts.vue'),
     children: [
       {
         path: '',
-        component: Home,
+        component: () => import('@/views/HomeView.vue'),
         meta: { title: 'Home' }
       },
       {
         path: '/account',
         name: 'account',
-        component: Account,
-        meta: {title: 'Account'}
+        component: () => import('@/views/AccountView.vue'),
+        meta: { title: 'Account' }
       },
       {
         path: '/wishlist',
         name: 'wishlist',
-        component: Wishlist,
-        meta: {title: 'Wishlist'}
+        component: () => import('@/views/WishlistView.vue'),
+        meta: { title: 'Wishlist' }
       },
       {
         path: '/orders',
         name: 'orders',
-        component: Orders,
-        meta: {title: 'Orders'}
+        component: () => import('@/views/OrdersView.vue'),
+        meta: { title: 'Orders' }
       },
       {
         path: '/inbox',
         name: 'inbox',
-        component: Inbox,
-        meta: {title: 'Inbox'}
+        component: () => import('@/views/InboxView.vue'),
+        meta: { title: 'Inbox' }
       },
       {
         path: '/addressBook',
         name: 'addressBook',
-        component: AddressBook,
-        meta: {title: 'AddressBook'}
+        component: () => import('@/views/AddressBookView.vue'),
+        meta: { title: 'AddressBook' }
       },
       {
         path: '/newsletter',
         name: 'newsletter',
-        component: NewsletterPreference,
-        meta: {title: 'Newsletter'}
+        component: () => import('@/views/NewsletterPreferenceView.vue'),
+        meta: { title: 'Newsletter' }
       },
       {
         path: '/orders/canceledOrDeliveredOrders',
         name: 'canceledOrders',
-        component: CanceledOrders,
-        meta: {title: 'CanceledOrders'}
+        component: () => import('@/views/CanceledOrReturnedOrdersViews.vue'),
+        meta: { title: 'CanceledOrders' }
       },
       {
         path: '/cart',
         name: 'cart',
-        component: CartView,
+        component: () => import('@/views/CartView.vue'),
         meta: { title: 'Cart' }
       },
       {
         path: '/checkout',
         name: 'checkout',
-        component: CheckoutView,
-        meta: {title: 'checkout'}
+        component: () => import('@/views/CheckoutView.vue'),
+        meta: { title: 'checkout' }
       },
       {
         path: '/product/:id',
         name: 'Product',
-        component: ProductDetails,
-        meta: {title: 'Product'}
+        component: () => import('@/views/ProductDetailsView.vue'),
+        meta: { title: 'Product' }
       },
       {
         path: '/profile',
         name: 'Profile',
-        component: AccountManagementView,
-        meta: {title: 'Profile'}
+        component: () => import('@/views/AccountManagementView.vue'),
+        meta: { title: 'Profile' }
       },
       {
         path: '/profile/security',
         name: 'Security',
-        component: ProfileSecurityView,
-        meta: {title: 'Security'}
+        component: () => import('@/views/ProfileSecurityView.vue'),
+        meta: { title: 'Security' }
       },
       {
         path: '/:catchAll(.*)',
-        component: NotFound
-      },
+        component: () => import('@/views/NotFoundView.vue')
+      }
     ]
   },
 
   {
     path: '/auth',
-    component: AuthLayouts,
+    component: () => import('@/layouts/AuthLayouts.vue'),
     children: [
       {
         path: '/signup',
         name: 'signup',
-        component: Signup,
-        meta: {title: 'Signup'}
+        component: () => import('@/views/SignupView.vue'),
+        meta: { title: 'Signup' }
       },
       {
         path: '/signin',
         name: 'signin',
-        component: Signin,
-        meta: {title: 'Signin'}
-      },
+        component: () => import('@/views/SigninView.vue'),
+        meta: { title: 'Signin' }
+      }
     ]
   },
 
   {
     path: '/admin',
-    component: AdminLayouts,
+    component: () => import('@/layouts/AdminLayouts.vue'),
     children: [
       {
         path: '',
-        component: AdminDashboard,
-        meta: {title: 'Dashboard'}
+        component: () => import('@/views/admin/DashboardView.vue'),
+        meta: { title: 'Dashboard' }
       },
       {
         path: '/admin/products',
         name: 'Products',
-        component: AdminProductsView,
-        meta: {title: 'Products'}
+        component: () => import('@/views/admin/ProductsView.vue'),
+        meta: { title: 'Products' }
       },
       {
         path: '/admin/orders',
         name: 'Order Management',
-        component: AdminOrdersView,
-        meta: {title: 'Order Management'}
+        component: () => import('@/views/admin/OrdersView.vue'),
+        meta: { title: 'Order Management' }
       },
       {
         path: '/admin/customers',
         name: 'Customer Management',
-        component: AdminCustomersView,
-        meta: {title: 'Customer Management'}
+        component: () => import('@/views/admin/CustomersView.vue'),
+        meta: { title: 'Customer Management' }
       },
       {
         path: '/admin/inventory',
         name: 'Inventory Management',
-        component: AdminInventoryView,
-        meta: {title: 'Inventory Management'}
+        component: () => import('@/views/admin/InventoryView.vue'),
+        meta: { title: 'Inventory Management' }
       },
       {
         path: '/admin/analytics',
         name: 'Analytics',
-        component: AdminAnalyticsView,
-        meta: {title: 'Analytics'}
+        component: () => import('@/views/admin/AnalyticsView.vue'),
+        meta: { title: 'Analytics' }
       },
       {
         path: '/admin/reviews',
         name: 'Reviews',
-        component: AdminCustomersReviewView,
-        meta: {title: 'Customer Reviews'}
+        component: () => import('@/views/admin/ReviewsView.vue'),
+        meta: { title: 'Customer Reviews' }
       },
       {
         path: '/admin/categories',
         name: 'Categories',
-        component: AdminCategoriesView,
-        meta: {title: 'Product Categories'}
-      },
-
-
+        component: () => import('@/views/admin/CategoriesView.vue'),
+        meta: { title: 'Product Categories' }
+      }
     ]
   }
-
-
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
+});
 
 router.afterEach((to) => {
   document.title = to.meta.title
     ? `${to.meta.title}`
     : 'My Shop'
-})
+});
 
-export default router
+export default router;
