@@ -42,73 +42,29 @@ import AccountOverviewSidebar from '@/components/AccountOverviewSidebar.vue';
                     </RouterLink>
                 </div>
                 <div class="row mt-3 mt-md-0">
-                    <div class="col mt-xl-4">
+                  <div class="col mt-xl-4">
+                      <div class="row border mb-3 p-1 p-md-2">
+                          <div class="col-3 col-xl-2 gx-0 gx-md-0">
 
-                        <div class="row border mb-3 p-1 p-md-2">
-                            <div class="col-3 col-xl-2 gx-0 gx-md-0">
-
-                                <div class="img-box-container">
-                                    <img src="../assets/images/headphone.jpg" class="" alt="">
-                                </div>
-                            </div>
-                            <div class="col-9 col-xl-8">
-                                <span class="fs-16">
-                                    Galaxy z fold 7 phone case
-                                </span> <br>
-                                <span class="fs-14">Order 1957496312</span>
-                                <div class="p-1 ps-2 pe-2 mt-3 mt-md-4 mb-1 rounded bg-secondary text-white fs-10 fit-content">
-                                    <span>CANCELED-PAYMENT UNSUCCESSFUL</span>
-                                </div>
-                                <span class="">On Saturday 29/11/25</span>
-                            </div>
-                            <div class="col-2 d-none d-xl-block">
-                                <a href="" id="news-letter" class="p-1 ps-2 pe-2 fs-15 text-red rounded">See details</a>
-                            </div>
-                        </div>
-                        <div class="row border p-1 p-md-2">
-                            <div class="col-3 col-xl-2 gx-0 gx-md-0">
-
-                                <div class="img-box-container">
-                                    <img src="../assets/images/headphone2.jpg" class="" alt="">
-                                </div>
-                            </div>
-                            <div class="col-9 col-xl-8">
-                                <span class="fs-16">
-                                    Galaxy z fold 7 phone case
-                                </span> <br>
-                                <span class="fs-14">Order 1957496312</span>
-                                <div class="p-1 ps-2 pe-2 mt-3 mt-md-4 mb-1 rounded bg-secondary text-white fs-10 fit-content">
-                                    <span>CANCELED-PAYMENT UNSUCCESSFUL</span>
-                                </div>
-                                <span class="">On Saturday 29/11/25</span>
-                            </div>
-                            <div class="col-2 d-none d-xl-block">
-                                <a href="" id="news-letter" class="p-1 ps-2 pe-2 fs-15 text-red rounded">See details</a>
-                            </div>
-                        </div>
-                        <div class="row border p-1 p-md-2">
-                            <div class="col-3 col-xl-2 gx-0 gx-md-0">
-
-                                <div class="img-box-container">
-                                    <img src="../assets/images/macbook.jpg" class="" alt="">
-                                </div>
-                            </div>
-                            <div class="col-9 col-xl-8">
-                                <span class="fs-16">
-                                    Galaxy z fold 7 phone case
-                                </span> <br>
-                                <span class="fs-14">Order 1957496312</span>
-                                <div class="p-1 ps-2 pe-2 mt-3 mt-md-4 mb-1 rounded bg-secondary text-white fs-10 fit-content">
-                                    <span>CANCELED-PAYMENT UNSUCCESSFUL</span>
-                                </div>
-                                <span class="">On Saturday 29/11/25</span>
-                            </div>
-                            <div class="col-2 d-none d-xl-block">
-                                <a href="" id="news-letter" class="p-1 ps-2 pe-2 fs-15 text-red rounded">See details</a>
-                            </div>
-                        </div>
-
-                    </div>
+                              <div class="img-box-container">
+                                  <img src="../assets/images/headphone.jpg" class="" alt="">
+                              </div>
+                          </div>
+                          <div class="col-9 col-xl-8">
+                              <span class="fs-16">
+                                  Galaxy z fold 7 phone case
+                              </span> <br>
+                              <span class="fs-14">Order 1957496312</span>
+                              <div class="p-1 ps-2 pe-2 mt-3 mt-md-4 mb-1 rounded bg-secondary text-white fs-10 fit-content">
+                                  <span>CANCELED-PAYMENT UNSUCCESSFUL</span>
+                              </div>
+                              <span class="">On Saturday 29/11/25</span>
+                          </div>
+                          <div class="col-2 d-none d-xl-block">
+                              <a href="" id="news-letter" class="p-1 ps-2 pe-2 fs-15 text-red rounded">See details</a>
+                          </div>
+                      </div>
+                  </div>
                 </div>
           </div>
         </div>
