@@ -1,29 +1,24 @@
 <script setup>
-import { ref, watch } from 'vue';
-import EmptyCartComp from '@/components/EmptyCart.vue';
-import CartCardDetailComp from '@/components/CartCardDetail.vue';
-import ConfirmModal from '@/components/ConfirmModal.vue';
-import { totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
+import { ref } from 'vue'
+import { useCartStore } from '@/stores/cart'
+import EmptyCartComp from '@/components/EmptyCart.vue'
+import CartCardDetailComp from '@/components/CartCardDetail.vue'
+import ConfirmModal from '@/components/ConfirmModal.vue'
 
-//Cart data
-const cart = ref(JSON.parse(localStorage.getItem("cart")));
+const cartStore = useCartStore()
 
 const showModal = ref(false)
+const selectedProduct = ref(null)
 
-const selectedProduct = ref(null);
-
-//when the remove button is clicked
 const handleRemoveClicked = (product) => {
   selectedProduct.value = product
   showModal.value = true
 }
 
 const confirmRemove = () => {
-  cart.value = cart.value.filter(item => item.id !== selectedProduct.value.id)
-  localStorage.setItem('cart', JSON.stringify(cart.value))
+  cartStore.removeItem(selectedProduct.value.id)
   showModal.value = false
 }
-
 </script>
 
 <template>
@@ -35,88 +30,77 @@ const confirmRemove = () => {
     :confirm-icon="['fa', 'trash']"
     @confirm="confirmRemove"
   />
-  <div v-if="cart !== null && cart.length" id="name-display" class="d-flex name-display d-md-none flex-column justify-content-center ">
-    <div>
-        <b class="p-3">
-            <!-- Welcome, Firstname -->
-             Welcome, John Doe
-        </b>
-    </div>
 
-    <div class="">
+  <div v-if="cartStore.items.length" id="name-display" class="d-flex name-display d-md-none flex-column justify-content-center">
+    <div>
+      <b class="p-3">Welcome, John Doe</b>
+    </div>
+    <div>
       <span class="p-3 fs-14 total-cart-item-sm">
-        You have {{ getTotalItemCount(cart)}} items in your cart
+        You have {{ cartStore.totalItems }} items in your cart
       </span>
     </div>
-
   </div>
 
   <div class="container mt-md-4">
-
-    <div v-if="cart !== null && cart.length" class="row mb-3 cart-items-section">
+    <div v-if="cartStore.items.length" class="row mb-3 cart-items-section">
 
       <div class="col-xl-9 mt-2 cart-item-section-column">
         <div class="row">
           <div id="product-number-in-cart" class="col border-2 border-bottom mt-2">
-            You have {{ getTotalItemCount(cart)}} item(s) in cart
-            <!-- {{ cart }} -->
+            You have {{ cartStore.totalItems }} item(s) in cart
           </div>
         </div>
 
         <CartCardDetailComp
-        :product="value" v-for="(value, product) in cart"
-        :key="product"
-         @remove-clicked="handleRemoveClicked"
+          v-for="(item, index) in cartStore.items"
+          :product="item"
+          :key="index"
+          @remove-clicked="handleRemoveClicked"
         />
-
       </div>
 
-      <div class="mt-md-3 mt-xl-0 col-xl-3 gx-0 gx-md-4 mb-md-3  order-first order-xl-0">
+      <div class="mt-md-3 mt-xl-0 col-xl-3 gx-0 gx-md-4 mb-md-3 order-first order-xl-0">
         <div class="card">
-          <div class="card-header fs-16">
-              CART SUMMARY
-          </div>
+          <div class="card-header fs-16">CART SUMMARY</div>
           <div class="card-body">
             <div class="d-flex mb-2 justify-content-between">
               <div class="d-flex align-items-center">
-                  <span class="fs-14 cart-summary">
-                      Items total ({{ getTotalItemCount(cart) }})
-                  </span>
+                <span class="fs-14 cart-summary">
+                  Items total ({{ cartStore.totalItems }})
+                </span>
               </div>
               <div>
-                  <span class="fs-15 cart-summary-total">
-                      ${{ totalPriceOfItems(cart) }}
-                  </span>
+                <span class="fs-15 cart-summary-total">
+                  ${{ cartStore.totalPriceOfItems }}
+                </span>
               </div>
             </div>
+
             <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-center">
-                    <span class="fs-14">
-                        Subtotal
-                    </span>
-                </div>
-                <div>
-                    <b class="fs-15 cart-summary-total">
-                        ${{ totalPriceOfItems(cart) }}
-                    </b>
-                </div>
+              <div class="d-flex align-items-center">
+                <span class="fs-14">Subtotal</span>
+              </div>
+              <div>
+                <b class="fs-15 cart-summary-total">
+                  ${{ cartStore.totalPriceOfItems }}
+                </b>
+              </div>
             </div>
 
             <div class="row d-flex bg-sm-none fixed-at-bottom justify-content-center bg-white mt-3 pt-3 pb-3 pt-md-4 pb-md-4 pt-xl-0 pb-xl-0">
               <div class="col-12 d-flex justify-content-center">
-                  <RouterLink to="checkout" class="btn btn-red checkout-btn w-100 w-sm-75 fs-14 shadow-sm">
-                      Checkout (${{ totalPriceOfItems(cart) }})
-                  </RouterLink>
+                <RouterLink to="checkout" class="btn btn-red checkout-btn w-100 w-sm-75 fs-14 shadow-sm">
+                  Checkout (${{ cartStore.totalPriceOfItems }})
+                </RouterLink>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
 
-
-   <EmptyCartComp v-else />
+    <EmptyCartComp v-else />
   </div>
 </template>
 
