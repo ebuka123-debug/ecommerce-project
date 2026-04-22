@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue';
-import { minusOnclickevent, plusOnclickevent} from '@/composables/cartMethods';
+
+import { useCartStore } from '@/stores/cart';
+
+const cartStore = useCartStore();
 
 // Accept the product object from the parent component
 const props = defineProps({
@@ -10,17 +12,14 @@ const props = defineProps({
 // Emit an event to the parent when the remove button is clicked
 const emit = defineEmits(['remove-clicked'])
 
-// Local ref to track and update the quantity display reactively
-const productQuantity = ref(props.product.quantity)
-
 // Decrease the product quantity by 1
 const handleMinus = () => {
-  minusOnclickevent(productQuantity, props.product, props.product.id)
+ cartStore.minusOnclickevent(props.product.id)
 }
 
 // Increase the product quantity by 1
 const handlePlus = () => {
-  plusOnclickevent(productQuantity, props.product, props.product.id)
+  cartStore.plusOnclickevent(props.product.id)
 }
 </script>
 
@@ -117,7 +116,7 @@ const handlePlus = () => {
 
           <!-- Current Quantity -->
           <div class="ms-4 product-amount">
-              <span>{{ productQuantity }}</span>
+              <span>{{ product.quantity }}</span>
           </div>
 
           <!-- Increase Quantity -->
