@@ -2,7 +2,7 @@
 
 import { useCartStore } from '@/stores/cart';
 
-const cart = useCartStore();
+const cartStore = useCartStore();
 
 </script>
 
@@ -61,7 +61,7 @@ const cart = useCartStore();
           <RouterLink to="/cart" class="text-white d-flex">
               <div class="position-relative">
                     <font-awesome-icon :icon="['fa','cart-plus']" />
-                  <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">{{ cart.totalItems(cart.items) }}</span></span>
+                  <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">{{ cartStore.totalItems }}</span></span>
               </div>
               <span class="ms-3">Cart</span>
           </RouterLink>
