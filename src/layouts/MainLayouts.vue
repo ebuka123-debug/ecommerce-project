@@ -1,52 +1,22 @@
 <script setup>
 
-import NavbarSmallScreen from '@/components/NavbarSmallScreen.vue';
-import NavAndTabs from '@/components/NavAndTabs.vue'
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
-import { getTotalItemCount } from '@/composables/cartMethods';
-//Cart data
-const cart = ref(JSON.parse(localStorage.getItem("cart")) || []);
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-// import Product from '@/components/ProductComp.vue';
-
-import { ref} from 'vue';
-
-// import Navbar from './components/Navbar.vue';
-import { RouterView } from 'vue-router';
-const result = ref("welcome");
+import NavbarSmallScreen from '@/components/NavbarSmallScreen.vue';   //Small screen navbar
+import NavAndTabs from '@/components/NavAndTabs.vue'  //the semi navabr that shows the page your on
+import Navbar from '@/components/Navbar.vue'; //Navbar
+import Footer from '@/components/Footer.vue'; //Footer
+import { RouterView } from 'vue-router';  //Router view that displays the various routes
 
 </script>
 
 <template>
 
-   <NavbarSmallScreen :quantity="getTotalItemCount(cart)"/>
+  <NavbarSmallScreen />
 
-
-  <navbar :quantity="getTotalItemCount(cart)"/>
+  <navbar />
 
   <NavAndTabs />
 
   <RouterView />
 
-
-
-  <!-- <p ></p> -->
-
-
-
-
-
   <Footer />
 </template>
-
-<style scoped>
-
-
-
-
-
-
-
-</style>
