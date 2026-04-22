@@ -1,18 +1,17 @@
 <script setup>
 
-const props = defineProps({
-  quantity: Number
-})
+import { useCartStore } from '@/stores/cart';
+
+const cart = useCartStore();
+
 </script>
 
 <template>
   <nav class="container-fluid bg-black sticky-top d-none d-md-flex align-items-center specs-nav bg-success">
     <div class="row w-100">
       <div class="col-3 col-xl-3 d-flex align-items-center justify-content-center ">
-
-          <b class="text-white fs-3">Specs</b>
-          <div id="fullstop" class="rounded rounded-circle mt-3 ms-1 me-xl-5"></div>
-
+        <b class="text-white fs-3">Specs</b>
+        <div id="fullstop" class="rounded rounded-circle mt-3 ms-1 me-xl-5"></div>
       </div>
       <div class="col-6 col-xl-5 g-0">
           <form action="" method="post" class="d-flex w-100 justify-content-center">
@@ -26,7 +25,6 @@ const props = defineProps({
           <div class="dropdown me-xl-3">
               <button class="btn text-white btn-hover btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   <b class=""> <font-awesome-icon :icon="['fa','user-circle']" class="fs-18 me-1"/> Account</b>
-
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li class="d-flex justify-content-center mt-2 mb-3">
@@ -35,9 +33,6 @@ const props = defineProps({
                       </RouterLink>
                   </li>
                   <li>
-                      <!-- <a href="../html/account.html">
-
-                      </a> -->
                       <RouterLink to="/account" class="dropdown-item" >
                           <font-awesome-icon :icon="['fa','user-circle']" />
                           My Account
@@ -65,9 +60,8 @@ const props = defineProps({
           </div>
           <RouterLink to="/cart" class="text-white d-flex">
               <div class="position-relative">
-                  <!-- <i class="fa fa-cart-plus"></i> -->
                     <font-awesome-icon :icon="['fa','cart-plus']" />
-                  <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">{{ quantity }}</span></span>
+                  <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidde fs-0">{{ cart.totalItems(cart.items) }}</span></span>
               </div>
               <span class="ms-3">Cart</span>
           </RouterLink>
@@ -77,5 +71,5 @@ const props = defineProps({
 </template>
 
 <style scoped>
-  /* h1{color: red} */
+
 </style>
