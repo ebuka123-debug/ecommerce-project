@@ -1,13 +1,12 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { useCartStore } from '@/stores/cart';
 import CartSummaryConfirmDetailsCard from '@/components/CartSummaryConfirmDetailsCard.vue';
 import DeliveryFormComp from '@/components/DeliveryForm.vue';
-
-import { totalPriceOfItems, getTotalItemCount} from '@/composables/cartMethods';
 import PaymentMethodComp from '@/components/PaymentMethod.vue';
 
 //Cart data
-const cart = ref(JSON.parse(localStorage.getItem("cart")));
+const cartStore = useCartStore();
 
 const showModal = ref(false);
 
@@ -20,7 +19,6 @@ watch(showModal, (val) => {
 })
 </script>
 <template>
-  <!-- <div :class="['my-modal', { active: showModal }]" @click.self="showModal = false"></div> -->
   <div  :class="['my-modal', { active: showModal }]" @click.self="showModal = false">
     <div class="modal-content rounded">
       <div class="row ms-3 me-3 mt-4">
@@ -154,7 +152,7 @@ watch(showModal, (val) => {
         <div class="col-xl-4 mb-4 order-xl-last">
           <div class="row mt-3">
             <div class="col">
-                <CartSummaryConfirmDetailsCard :quantity="getTotalItemCount(cart)" :totalPrice="totalPriceOfItems(cart)"/>
+                <CartSummaryConfirmDetailsCard :quantity="cartStore.totalItems" :totalPrice="cartStore.totalPriceOfItems"/>
             </div>
           </div>
         </div>
@@ -177,11 +175,9 @@ watch(showModal, (val) => {
 </template>
 <style scoped>
 
-
 .bg-black{
     background-color: var(--tetiary);
 }
-
 
 
 #shipping-price{
@@ -191,27 +187,8 @@ watch(showModal, (val) => {
 
 .pickupSections{
   height: 420px;
-  /* border: 1px solid black; */
   overflow-y: auto;
 }
-
-/* #my-modal{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.138);
-    position: fixed;
-    z-index: 1111;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-.modal-content{
-    position: relative;
-    width: 40%;
-    max-height: 80%;
-    background-color: white;
-    overflow-y: scroll;
-} */
 
 .my-modal{
     width: 100%;
@@ -219,14 +196,9 @@ watch(showModal, (val) => {
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(0.5px);
-    /* background-color: rgba(0, 0, 0, 0.138); */
     position: fixed;
-    /* border: 1px solid red; */
     z-index: 9999;
     display: none;
-    /* opacity: 0;
-    pointer-events: none; */
-    /* transition: opacity 0.3s ease; */
     overflow-x: hidden;
     overflow-y: auto;
     animation: fadeIn 0.3s ease;
