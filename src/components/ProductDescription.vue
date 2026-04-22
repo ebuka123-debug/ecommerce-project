@@ -1,12 +1,10 @@
 <script setup>
+import { ref, onMounted, computed } from 'vue';
+import { useCartStore } from '@/stores/cart';
+import { useWishListStore } from '@/stores/wishlist';
 
-import { ref, reactive, onMounted } from 'vue';
-import { useCart, addCart, plusOnclickevent, minusOnclickevent } from '@/composables/cartMethods';
-import { addWishlist, removeWishlist, checkWishlistExist } from '@/composables/wishlistMethods';
-
-
-const { productExistInCartStatus } = useCart();
-const { productExistInWishlist } = checkWishlistExist();
+const cartStore = useCartStore();
+const wishlistStore = useWishListStore();
 
 const props = defineProps({
   image: String,
@@ -15,55 +13,37 @@ const props = defineProps({
   originalPrice: String,
   discountPercentage: Number,
   availabilityStatus: String,
-  productQuantity: Number,
   productId: Number,
   productData: Object,
 });
 
-// localStorage data
-const cartData = ref(JSON.parse(localStorage.getItem('cart')));
-const wishlistData = ref(JSON.parse(localStorage.getItem('wishlist')));
-// console.log('wishlist:', wishlistData.value);
-// console.log('productId:', props.productId, typeof props.productId);
-// console.log('match:', wishlistData.value?.find(item => item.id === props.productId));
 // UI state
 const addToCartDisplayStatus = ref(false);
 const plusOrMinusDisplay = ref(false);
 const isLoading = ref(false);
 const isInWishlist = ref(
   (() => {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist'));
-    return wishlist !== null && productExistInWishlist(props.productId, wishlist);
+    return wishlistStore.items !== null && wishlistStore.productExistInWishlist(props.productId);
   })()
 );
 
-console.log("this is before click")
-console.log(isInWishlist.value);
-
-
-console.log(localStorage.getItem("wishlist"))
-// Quantity of the product in cart
-const cartQuantity = ref(
-  JSON.parse(localStorage.getItem('cart'))?.find(
-    (item) => item.id === props.productId
-  )?.quantity || 1
-);
-
+const cartQuantity = computed(() => {
+  const item = cartStore.items.find(item => item.id === props.productId)
+  return item ? item.quantity : 1
+})
 
 onMounted(() => {
   // Cart state
-  const inCart =
-    cartData.value !== null &&
-    productExistInCartStatus(props.productId, cartData.value);
+  const inCart = cartStore.items !== null && cartStore.productExistInCart(props.productId);
+
   addToCartDisplayStatus.value = !inCart;
   plusOrMinusDisplay.value = inCart;
 
   // Wishlist state
-  isInWishlist.value =
-    wishlistData.value !== null &&
-    productExistInWishlist(props.productId, wishlistData.value);
+  isInWishlist.value = wishlistStore.items !== null && wishlistStore.productExistInWishlist(props.productId);
 });
 
+//product full details that is to be added to cart
 function buildProductPayload() {
   return {
     id: props.productId,
@@ -77,17 +57,8 @@ function buildProductPayload() {
   };
 }
 
-function refreshCartData() {
-  cartData.value = JSON.parse(localStorage.getItem('cart'));
-}
-
-function refreshWishlistData() {
-  wishlistData.value = JSON.parse(localStorage.getItem('wishlist'));
-}
-
 function startTimer() {
-  addCart(buildProductPayload());
-  refreshCartData();
+  cartStore.addCart(buildProductPayload());
   isLoading.value = true;
   addToCartDisplayStatus.value = false;
   setTimeout(() => {
@@ -97,26 +68,23 @@ function startTimer() {
 }
 
 function addItemOnClick() {
-  plusOnclickevent(cartQuantity, buildProductPayload(), props.productId);
+  cartStore.plusOnclickevent(props.productId);
 }
 
 function removeItemOnClick() {
-  minusOnclickevent(cartQuantity, buildProductPayload(), props.productId);
+  cartStore.minusOnclickevent(props.productId);
 }
 
 function toggleWishlist() {
   if (isInWishlist.value) {
-    // console.log("this is after it is click and set to non active")
-    // console.log(isInWishlist.value);
-    removeWishlist(props.productId);
+
+    wishlistStore.removeFromWishlist(props.productId);
     isInWishlist.value = false;
   } else {
-    // console.log("this is after it is click and set to active")
-    // console.log(isInWishlist.value);
-    addWishlist(buildProductPayload());
+
+    wishlistStore.addToWishlist(buildProductPayload());
     isInWishlist.value = true;
   }
-  refreshWishlistData();
 }
 </script>
 
@@ -150,13 +118,6 @@ function toggleWishlist() {
                   :class="isInWishlist ? 'text-danger' : 'text-ash'"
                 />
               </div>
-              <!-- <div id="like" :class="[likeBgColor]" class="d-flex justify-content-center align-items-center rounded-circle">
-                <font-awesome-icon
-                  :icon="['fa','heart']"
-                  :class="[likeColor]"
-                  @click="addToWishlist()"
-                />
-              </div> -->
             </div>
           </div>
         </div>
@@ -316,11 +277,6 @@ function toggleWishlist() {
     .product-image-box{
         height: 34vh;
     }
-
-
-        /* form {
-        display: block !important;
-    } */
 
     .card {
         height: auto !important;
