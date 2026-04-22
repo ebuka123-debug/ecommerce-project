@@ -9,17 +9,12 @@ import Ratings from '@/components/Ratings.vue';
 import CommentsCard from '@/components/CommentsCard.vue';
 import SpecificationCard from '@/components/SpecificationCard.vue';
 
-
 //Data of products that are stored in the local storage
 const data = JSON.parse(localStorage.getItem("Product-data"));
 
 //Data of the product that was cliked to buy now
 const product = ref(JSON.parse(localStorage.getItem("products")));
 
-//Cart data
-const cartData = ref(JSON.parse(localStorage.getItem("cart")));
-
-//original price of product
 const originalPrice = ref((product.value.price / (1 - product.value.discountPercentage / 100)).toFixed(2));
 //route
 const route = useRoute();
@@ -31,21 +26,13 @@ const routeParameterId = route.params.id;
 const productExist = ref(false);
 
 
-//looping throught the data of products
+//looping through the data of products
 data.forEach(element => {
   // checks if id's (parameter) or in the product data matches the parameter on the route
   if (element.id === Number(routeParameterId)) {
     productExist.value = true;
   }
 });
-
-//product quantity
-const productQuantity = ref(
-  JSON.parse(localStorage.getItem("cart"))?.find(
-    item => item.id === product.value.id
-  )?.quantity || 1
-);
-
 
 const productSpecs = reactive(
   {
@@ -221,7 +208,6 @@ i want this text to be displayed in paragraphs, how do i do that`
           :original-price="originalPrice"
           :discount-percentage="product.discountPercentage"
           :availability-status="product.availabilityStatus"
-          :product-quantity="productQuantity"
           :product-id="product.id"
           :product-data="product"
         />
